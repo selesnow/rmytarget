@@ -66,9 +66,54 @@ auth - Объект R с авторизационными данными, пол
 ## Получение списка рекламных кампаний.
 
 Функция доступна для рекламных аккаунтов в которых есть рекламные кампании, для того что бы получить список рекламных кампаний клиента агентства вам необходимо получить для этого клиента токен, указав имя клента в аргументе agency_client_name функции myTarAuth.
+
 `myTargetCampaign <- myTarGetCampaignList(myTargetAuth)`
 
 Аргументы функции:
 auth - Объект R с авторизационными данными, полученный с помощью функции myTarAuth
 
 Более полная информация находится в официальной документации к API по [ссылке](https://target.my.com/doc/api/detailed/#resource_campaigns)
+
+## Получение общей статистики по всем рекламным кампаниям аккаунта.
+Функция доступна для рекламных аккаунтов в которых есть рекламные кампании.
+
+```
+myTargetSummary <- myTarGetTotalStats(date_to = "2016-08-01",
+                                      date_to = "2016-08-10",
+                                      auth = myTargetAuth)
+```
+Функция возвращает data frame со статистикой по рекламным кампаниям в разрезе дат.
+
+Структура полученного data frame.
+<table>
+    <tr>
+        <td><center>Поле</center></td><td><center>Тип данных</center></td><td><center>Описание</center></td>
+    </tr>
+    <tr>
+        <td><center>Date</center></td><td><center>Date</center></td><td><center>Дата</center></td>
+    </tr>
+    <tr>
+        <td><center>CampaignName</center></td><td><center>Character</center></td><td><center>Название рекламной кампании</center></td>
+    </tr>
+    <tr>
+        <td><center>CampaignID</center></td><td><center>Character</center></td><td><center>ID рекламной кампании</center></td>
+    </tr>
+    <tr>    
+        <td><center>Reach</center></td><td><center>integer</center></td><td><center>Охват, количество уникальных пользователей которым были показаны объявления за всё время ведения рекламной кампании</center></td>
+    </tr>
+     <tr>
+        <td><center>CTR</center></td><td><center>Numeric</center></td><td><center>Кликабельность объявлений</center></td>
+    </tr>
+    <tr>
+        <td><center>Cost</center></td><td><center>Numeric</center></td><td><center>Сумма списаний по рекламной кампании в рублях</center></td>
+    </tr>
+    <tr>
+        <td><center>Impressions</center></td><td><center>integer</center></td><td><center>Количество показов</center></td>
+    </tr>
+    <tr>
+        <td><center>Clicks</center></td><td><center>integer</center></td><td><center>Количество кликов</center></td>
+    </tr>
+    <tr>
+        <td><center>UniquesIncrement</center></td><td><center>integer</center></td><td><center>Прирост новых уникальных пользователей увидивших объявления впервые</center></td>
+    </tr>
+</table> 
