@@ -1,5 +1,12 @@
 # rmytarget - пакет для работы с API MyTarget на языке R.
 
+##Содержание README:
+
+*[Установка пакета rmytarget](https://github.com/selesnow/rmytarget#Краткое-описание)
+-[Авторизация в API MyTarget](https://github.com/selesnow/rmytarget#Авторизация-в-api-mytarget)
+-[Получение списка клиентов для агентского аккаунта](https://github.com/selesnow/rmytarget#Получение-списка-клиентов-для-агентского-аккаунта)
+-[Получение списка рекламных кампаний](https://github.com/selesnow/rmytarget#Получение-списка-рекламных-кампаний)
+-[Получение общей статистики по всем рекламным кампаниям аккаунта](https://github.com/selesnow/rmytarget#Получение-общей-статистики-по-всем-рекламным-кампаниям-аккаунта)
 
 ## Краткое описание.
 
@@ -48,6 +55,19 @@ myTargetAuth <- myTarAuth(grant_type = "agency_client_credentials",
 Вариант grant_type=agency_client_credentials не является стандартным для OAuth2. Он реализован для того, чтобы агентства могли создавать access-токены для своих клиентов напрямую. Помимо параметров client_id, client_secret нужно передавать agency_client_name.
 Для получения информации по агентскому аккаунту, например поучить список клиентов агентсва необходимо следовать первой описанной схеме с grant_type = "client_credentials" и получить токен агентского аккаунта.
 
+##Обновление токена доступа
+Каждый полученный access-токен является действительным в течение суток. На это указывает свойство expires_in в ответе на запрос access-токена.
+Для обновления токета в пакете rmytarget есть функция `myTarRefreshToken`
+
+```
+myTargetAuth <- myTarRefreshToken(old_auth = myTargetAuth,
+                                  client_id = "xxxxxxxxx",
+                                  client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxx...")
+```
+Аргументы функции:
+old_auth - R объект с учётными данными полученный с помощью функции myTarAuth.
+client_id - ID выдаётся вам при подтверждение доступа к API MyTarget.
+client_secret - Выдаётся вам при подтверждение доступа к API MyTarget вместе с Client ID.
 
 Подробную информацию о схеме аутинтификации в API вы можете получить по [ссылке](https://target.my.com/adv/api-marketing/doc/authorization).
 
