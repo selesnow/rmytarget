@@ -1,103 +1,43 @@
 \name{myTarGetStats}
 \alias{myTarGetStats}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+
+\title{Get stat by any API objects}
+\description{Function myTarGetStats load data frame with statistic by any API objects.}
 \usage{
 myTarGetStats(date_from = Sys.Date() - 7, date_to = Sys.Date(), object_type = "campaigns", object_id = NULL, stat_type = "day", auth = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{date_from}{
-%%     ~~Describe \code{date_from} here~~
+  \item{date_from}{Start date}
+  \item{date_to}{End date}
+  \item{object_type}{API object typr, character value, apply one of campaigns, banners,pad_groups,pads,users}
+  \item{object_id}{ID of API object (id campaign or any object}
+  \item{stat_type}{Time stap, get value day or hour}
+  \item{auth}{R auth object}
 }
-  \item{date_to}{
-%%     ~~Describe \code{date_to} here~~
-}
-  \item{object_type}{
-%%     ~~Describe \code{object_type} here~~
-}
-  \item{object_id}{
-%%     ~~Describe \code{object_id} here~~
-}
-  \item{stat_type}{
-%%     ~~Describe \code{stat_type} here~~
-}
-  \item{auth}{
-%%     ~~Describe \code{auth} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+\details{}
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Data frame with statistic.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-%%  ~~who you are~~
+Alexey Seleznev
 }
 \note{
-%%  ~~further notes~~
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+MyTarget API documentation - https://target.my.com/doc/api/detailed/#resource_statistics
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (date_from = Sys.Date() - 7, date_to = Sys.Date(), object_type = "campaigns", 
-    object_id = NULL, stat_type = "day", auth = NULL) 
-{
-    startDate <- paste0(ifelse(nchar(day(date_from)) == 1, paste0(0, 
-        day(date_from)), day(date_from)), ".", ifelse(nchar(month(date_from)) == 
-        1, paste0(0, month(date_from)), month(date_from)), ".", 
-        year(date_from))
-    endDate <- paste0(ifelse(nchar(day(date_to)) == 1, paste0(0, 
-        day(date_to)), day(date_to)), ".", ifelse(nchar(month(date_to)) == 
-        1, paste0(0, month(date_to)), month(date_to)), ".", year(date_to))
-    query_body <- paste0("https://target.my.com/api/v1/statistics/", 
-        object_type, "/", ifelse(is.null(object_id), "", paste(object_id, 
-            collapse = ";")), "/", stat_type, "/", startDate, 
-        "-", endDate, ".json")
-    statanswer <- GET(query_body, add_headers(Authorization = paste0("Bearer ", 
-        auth$access_token)))
-    stop_for_status(statanswer)
-    statRaw <- content(statanswer, "parsed", "application/json")
-    data <- data.frame(stringsAsFactors = FALSE)
-    for (i in 1:length(statRaw)) {
-        for (z in 1:length(statRaw[[i]]$detailed_stat)) {
-            data <- rbind(data, data.frame(CampaignName = statRaw[[i]]$name, 
-                CampaignID = statRaw[[i]]$id, Date = statRaw[[i]]$detailed_stat[[z]]$date, 
-                Cost = statRaw[[i]]$detailed_stat[[z]]$amount, 
-                Clicks = statRaw[[i]]$detailed_stat[[z]]$clicks, 
-                Impressions = statRaw[[i]]$detailed_stat[[z]]$shows, 
-                CTR = statRaw[[i]]$detailed_stat[[z]]$ctr, stringsAsFactors = FALSE))
-        }
-    }
-    data$Date <- as.Date(data$Date, "\%d.\%m.\%Y")
-    data$Cost <- as.numeric(data$Cost)
-    data$Clicks <- as.integer(data$Clicks)
-    data$Impressions <- as.integer(data$Impressions)
-    data$CTR <- as.numeric(data$CTR)
-    return(data)
-  }
+myCampStat <- myTarGetStats(date_from = "2016-08-01",
+                            date_to = "2016-08-10",
+                            object_type = "campaigns",
+                            object_id = c("6530449","6477678"),
+                            stat_type = "day",
+                            auth = myTargetAuth)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
