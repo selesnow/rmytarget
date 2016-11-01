@@ -24,6 +24,7 @@
 После чего можно устанавливать пакет rmytarget.
 
 `install_github('selesnow/rmytarget')`
+`library(rmytarget)`
 
 
 ## Авторизация в API MyTarget.
