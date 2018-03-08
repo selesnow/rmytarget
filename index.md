@@ -35,6 +35,9 @@
       <td>
         <a href="https://selesnow.github.io/getProxy/">getProxy</a>
       </td>
+      <td>
+        <a href="https://selesnow.github.io/news/">NEWS</a>
+      </td>
     </tr>
 </table>
 
@@ -76,7 +79,7 @@
 В API MyTarget существует две схемы авторазиции, Client Credentials Grant для обычного рекламодателя и для агентства. В зависимости от типа вашего аккаунта вам необходимо получить токен доступа согласно типу вашего аккаунта в MyTarget.
 
 Получение токена для обычного рекламного аккаунта.
-```
+```r
 myTargetAuth <- myTarAuth(grant_type = "client_credentials",
                           client_id = "XXXXXXXXXX",
                           client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")		
@@ -88,7 +91,7 @@ client_id - ID выдаётся вам при подтверждение дос�
 client_secret - Выдаётся вам при подтверждение доступа к API MyTarget вместе с Client ID.
 
 Получение токена для агентского аккаунта.
-```
+```r
 myTargetAuth <- myTarAuth(grant_type = "agency_client_credentials",
                           client_id = "XXXXXXXXXX",
                           client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -102,7 +105,7 @@ myTargetAuth <- myTarAuth(grant_type = "agency_client_credentials",
 Каждый полученный access-токен является действительным в течение суток. На это указывает свойство expires_in в ответе на запрос access-токена.
 Для обновления токета в пакете rmytarget есть функция `myTarRefreshToken`
 
-```
+```r
 myTargetAuth <- myTarRefreshToken(old_auth = myTargetAuth,
                                   client_id = "xxxxxxxxx",
                                   client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxx...")
@@ -140,7 +143,7 @@ auth - Объект R с авторизационными данными, пол
 ## Получение общей статистики по всем рекламным кампаниям аккаунта.
 Функция доступна для рекламных аккаунтов в которых есть рекламные кампании.
 
-```
+```r
 myTargetSummary <- myTarGetTotalStats(date_to = "2016-08-01",
                                       date_to = "2016-08-10",
                                       auth = myTargetAuth)
