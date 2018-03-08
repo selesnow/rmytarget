@@ -36,6 +36,9 @@
         <a href="https://selesnow.github.io/getProxy/">getProxy</a>
       </td>
       <td>
+        <a href="https://selesnow.github.io/rGitHub/">rGitHub</a>
+      </td>
+      <td>
         <a href="https://selesnow.github.io/news/">NEWS</a>
       </td>
     </tr>
@@ -183,3 +186,44 @@ myTargetSummary <- myTarGetTotalStats(date_to = "2016-08-01",
         <td><center>UniquesIncrement</center></td><td><center>integer</center></td><td><center>Прирост новых уникальных пользователей увидивших объявления впервые</center></td>
     </tr>
 </table> 
+
+---
+
+## *Автор пакета: Алексей Селезнёв, Head of Analytics Dept. at Netpeak*
+<table>
+    <tr>
+      <td>
+      <img align="right" src="https://lh3.googleusercontent.com/R-0jgJSxIIhpag2L6YCIhJVIcIWx6-Jt5UCTRJjWzJewo47u2QBnik5CRF2dNB79jmsN_BFRjVOAYfvCqFcn3UNS_thGbbxF-99c9lwBWWlFI7JCWE43K5Yk9HnIW8i8YpTDx3l28IuYswaI-qc9QosHT1lPCsVilTfXTyV2empF4S74daOJ6x5QHYRWumT_2MhUS0hPqUsKVtOoveqDnGf3cF_VsN-RfOAwG9uCeGOgNRgv_fhSr41rw4LBND4gf05nO8zMp4TZMrrcUjKvvx6qNgYDor5LFOHiRmfKISYRVkWYe4wLyGO1FgkgTDjg0300lcur2t3txVwZUgROLZdaxOLx4owa8Rc8B8VKwd3vHxjov_aVfNPT4xf9jSFBBEOI-mfYpa55ejKDw-rqTQ6miFRFWpp_hjrk9KbGyB-Z6iZvYL-2dZ6mzgpUfs2I0tEAGsV07yTzboJ0RNCByC2-U-ZVjWdp2_9Au3FFoUcdQUAmPYOVqOv4r3oLbkkJKLj2A5jp7vf4IAoExLIfJuqEf7XN7fFcv4geib029qJjBt28wnqSO6TKEwB2fesR3uPHvGB6_6NHD70UDH-aCRCK4UBeoajtU0Y8Ks8Vwxo0oZBwmoEu8gudTFBF6mDT7GjLoGLDeNxE-TG7OtWUdxsJk7yzXGW3hE-VxsMD9g=s351-no?w=100" height="150">
+      </td>
+      <td>
+        <b>Контакты</b>
+        <br>email: selesnow@gmail.com
+        <br>skype: selesnow
+        <br>telegram: @AlexeySeleznev
+      </td>
+    </tr>
+    <tr>
+     <table>
+    <tr>
+      <td>
+        <a href="https://facebook.com/selesnow/">Facebook</a>
+      </td>
+      <td>
+        <a href="https://vk.com/selesnow">Vkontakte</a>
+      </td>
+      <td>
+        <a href="https://linkedin.com/in/selesnow">Linkedin</a>
+      </td>
+      <td>
+        <a href="https://alexeyseleznev.wordpress.com/">Blog</a>
+      </td>
+      <td>
+        <a href="https://github.com/selesnow/">GitHub</a>
+      </td>
+      <td>
+        <a href="https://stepik.org/users/792428">Stepic</a>
+      </td>
+    </tr>
+</table>
+    </tr>
+</table>
