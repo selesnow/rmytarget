@@ -26,6 +26,7 @@
 1. [Документация по работе с пакетом rmytarget](https://selesnow.github.io/rmytarget/).
 2. Баг репорты, предложения по доработке и улучшению функционала rmytarget оставлять [тут](https://github.com/selesnow/rmytarget/issues). 
 3. [Список релизов](https://github.com/selesnow/rmytarget/releases).
+4. [Группа в Вконтакте](https://vk.com/data_club).
 
 ### Автор пакета
 Алексей Селезнёв
