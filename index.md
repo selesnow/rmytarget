@@ -58,6 +58,11 @@
 <gcse:search></gcse:search>
 
 # rmytarget - пакет для работы с API MyTarget на языке R.
+## Ссылки
+* [Документация](https://selesnow.github.io/rmytarget/)
+* [Отчёт об ошибках и доработках](https://github.com/selesnow/rmytarget/issues)
+* [Список релизов](https://github.com/selesnow/rmytarget/releases)
+* [Группа в Вконтакте](https://vk.com/data_club)
 
 ## Содержание README:
 
