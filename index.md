@@ -165,7 +165,7 @@ auth - Объект R с авторизационными данными, пол
 Функция доступна для рекламных аккаунтов в которых есть рекламные кампании.
 
 ```r
-myTargetSummary <- myTarGetTotalStats(date_to = "2016-08-01",
+myTargetSummary <- myTarGetTotalStats(date_from = "2016-08-01",
                                       date_to = "2016-08-10",
                                       auth = myTargetAuth)
 ```
