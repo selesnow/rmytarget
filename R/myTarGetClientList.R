@@ -1,12 +1,12 @@
 myTarGetClientList <-
 function(auth = NULL){
-  if(is.null(auth)){stop("Óêàæèòå îáúåêò ñ ó÷¸òíûìè äàííûìè, àðãóìåíò auth ÿâëÿåòñÿ îáÿçàòåëüíûì")}
-  asw <- GET("https://target.my.com/api/v1/clients.json",add_headers(Authorization = paste0("Bearer ",mtAuth$access_token)))
+  if(is.null(auth)){stop("Ã“ÃªÃ Ã¦Ã¨Ã²Ã¥ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã± Ã³Ã·Â¸Ã²Ã­Ã»Ã¬Ã¨ Ã¤Ã Ã­Ã­Ã»Ã¬Ã¨, Ã Ã°Ã£Ã³Ã¬Ã¥Ã­Ã² auth Ã¿Ã¢Ã«Ã¿Ã¥Ã²Ã±Ã¿ Ã®Ã¡Ã¿Ã§Ã Ã²Ã¥Ã«Ã¼Ã­Ã»Ã¬")}
+  asw <- GET("https://target.my.com/api/v1/clients.json",add_headers(Authorization = paste0("Bearer ",auth$access_token)))
   stop_for_status(asw)
   answer <- content(asw, "parsed", "application/json")
   
   clients <- data.frame(clients = character(), user = character(), stringsAsFactors = F)
-  #Íàçâàíèå ëþáîãî àêêàóíòà
+  #ÃÃ Ã§Ã¢Ã Ã­Ã¨Ã¥ Ã«Ã¾Ã¡Ã®Ã£Ã® Ã ÃªÃªÃ Ã³Ã­Ã²Ã 
   for(i in 1:length(answer)){
     clients <- rbind(clients, data.frame(clients = answer[[i]]$additional_info$client_name,user = answer[[i]]$username))
   }
