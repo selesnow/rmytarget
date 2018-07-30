@@ -1,7 +1,8 @@
 myTarGetCampaignList <-
 function(auth = NULL){
   if(is.null(auth)){stop("Укажите объект с учётными данными, аргумент auth является обязательным")}
-  camp <- GET("https://target.my.com/api/v1/campaigns.json?fields=id,name,status,mixing",add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+  
+  camp <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v1/campaigns.json?fields=id,name,status,mixing"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
   stop_for_status(camp)
   campRaw <- content(camp, "parsed", "application/json")
   
@@ -15,3 +16,7 @@ function(auth = NULL){
   }
   return(campList)
 }
+
+
+
+
