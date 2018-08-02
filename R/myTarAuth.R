@@ -19,7 +19,7 @@ myTarAuth <-
               stop(parse_token$error,": ", parse_token$error_description)
             }
           # check expire token, and update him
-        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") -3000 < 60) {
+        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30) {
             message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
             message("Auto refreshing token")
             
