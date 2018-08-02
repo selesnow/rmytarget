@@ -28,8 +28,9 @@ function(date_from = Sys.Date() - 7,
   
   
   data <- data.frame(stringsAsFactors = FALSE)
-  for(i in 1:length(statRaw)){
-    for(z in 1:length(statRaw[[i]]$detailed_stat)){
+  for(i in seq_along(1:length(statRaw))){
+    for(z in seq_along(1:length(statRaw[[i]]$detailed_stat))){
+      if (length(statRaw[[i]]$detailed_stat) == 0) next
       data <- rbind(data, data.frame(CampaignName = statRaw[[i]]$name,
                                      CampaignID = statRaw[[i]]$id,
                                      Date = statRaw[[i]]$detailed_stat[[z]]$date,
