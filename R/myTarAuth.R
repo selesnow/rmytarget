@@ -9,7 +9,7 @@ myTarAuth <-
     
     
     if (code_grant == TRUE) {
-      
+
       # try load token
       if(file.exists(paste0(token_path, "/", login, ".mytar.Auth.RData"))) {
         
@@ -27,11 +27,17 @@ myTarAuth <-
                                  "&client_secret=", "YJMLYLFUBIW52e4qW7y39XqZebYWbzNIN8MnMo9BXA1iRhrRvX1sPGfexO4NvT97H1q1tdlegRrHyaCJHMlP1ZtKTwLanBtTvlLQVYoxa1R0GSKcUKG3Lm4eYJFI8mtHga75qn7xE4JStf9Xrwh0AhQFnxX0tQMU19fIbpTsFjwfvvgFEQ1FlmbE67Xksx6n1oz5O5RJsAZMepvgNVIEfm6V0vr2sMdlCh00B6XZdubtqXHAPM")
             
             raw_token <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
+            
             parse_token <- content(raw_token, as = "parsed", type = "application/json")
+            if (! is.null(parse_token$error)) {
+              stop(parse_token$error,": ", parse_token$error_description)
+            }
+            
             parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs") 
             save(parse_token, file = paste0(token_path, "/", login, ".mytar.Auth.RData"))
             message("Token saved at ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
             return(parse_token)
+            
           } else {
             # return token if he live more than 60 mins
             return(parse_token)
