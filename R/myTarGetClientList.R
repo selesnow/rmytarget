@@ -1,6 +1,8 @@
 myTarGetClientList <-
-function(auth = NULL){
-  if(is.null(auth)){stop("Óêàæèòå îáúåêò ñ ó÷¸òíûìè äàííûìè, àðãóìåíò auth ÿâëÿåòñÿ îáÿçàòåëüíûì")}
+function(auth = NULL, token_path = getwd(), login = NULL){
+  if (is.null(auth)) {
+    auth <- myTarAuth(login = login, token_path = token_path)
+    }
   asw <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v1/clients.json"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
   stop_for_status(asw)
   answer <- content(asw, "parsed", "application/json")
