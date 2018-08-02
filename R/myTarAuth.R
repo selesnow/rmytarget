@@ -17,19 +17,21 @@ myTarAuth <-
           load(paste0(token_path, "/", login, ".mytar.Auth.RData"))
 
           # check expire token, and update him
-          if(as.numeric(parse_token$expire_at - Sys.time(), units = "mins") -3000 < 60) {
+        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") -3000 < 60) {
             message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
             message("Auto refreshing token")
             
-            query_body <- paste0("grant_type=", "refresh_token",
-                                 "&refresh_token=", parse_token$refresh_token,
-                                 "&client_id=",  getOption("rmytarget.client_id"),
-                                 "&client_secret=", getOption("rmytarget.client_secret"))
+            #query_body <- paste0("grant_type=", "refresh_token",
+            #                     "&refresh_token=", parse_token$refresh_token,
+            #                     "&client_id=",  getOption("rmytarget.client_id"),
+            #                     "&client_secret=", getOption("rmytarget.client_secret"))
           
            
-            raw_token <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
+            #raw_token <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
              
-            parse_token <- content(raw_token, as = "parsed", type = "application/json")
+            #parse_token <- content(raw_token, as = "parsed", type = "application/json")
+            
+            parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = getOption("rmytarget.client_id"), client_secret = getOption("rmytarget.client_secret"))
             
             if (! is.null(parse_token$error)) {
               stop(parse_token$error,": ", parse_token$error_description)
