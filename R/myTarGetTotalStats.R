@@ -24,7 +24,7 @@ function(date_from = Sys.Date() - 7, date_to = Sys.Date(),auth = NULL, token_pat
     TotalData <- rbind(TotalData, i)
   }
   
-  TotalData$Date             <- as.Date(TotalData$Date)
+  TotalData$Date             <- as.character(TotalData$Date)
   TotalData$CampaignName     <- as.character(TotalData$CampaignName)
   TotalData$CampaignID       <- as.character(TotalData$CampaignID)
   TotalData$Reach            <- as.integer(TotalData$Reach)
