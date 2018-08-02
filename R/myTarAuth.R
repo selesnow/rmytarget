@@ -13,7 +13,7 @@ myTarAuth <-
       # try load token
       if(file.exists(paste0(token_path, "\\", login, ".mytar.Auth.RData"))) {
         
-          message("Load token from ", paste0(token_path, "\\", login, ".mytar.Auth.RData"))
+          message("Load token from ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
           load(paste0(token_path, "\\", login, ".mytar.Auth.RData"))
             if (!is.null(parse_token$error)) {
               stop(parse_token$error,": ", parse_token$error_description)
@@ -22,16 +22,6 @@ myTarAuth <-
         if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30) {
             message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
             message("Auto refreshing token")
-            
-            #query_body <- paste0("grant_type=", "refresh_token",
-            #                     "&refresh_token=", parse_token$refresh_token,
-            #                     "&client_id=",  getOption("rmytarget.client_id"),
-            #                     "&client_secret=", getOption("rmytarget.client_secret"))
-          
-           
-            #raw_token <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
-             
-            #parse_token <- content(raw_token, as = "parsed", type = "application/json")
             
             parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = getOption("rmytarget.client_id"), client_secret = getOption("rmytarget.client_secret"))
             
