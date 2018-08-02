@@ -1,5 +1,14 @@
 myTarGetStats <-
-function(date_from = Sys.Date() - 7, date_to = Sys.Date(), object_type = "campaigns", object_id = NULL, stat_type = "day",auth = NULL){
+function(date_from = Sys.Date() - 7,
+         date_to = Sys.Date(), 
+         object_type = "campaigns",
+         object_id = NULL, 
+         stat_type = "day",auth = NULL){
+  
+  if (is.null(auth)) {
+    auth <- myTarAuth(login = login, token_path = token_path)
+  }
+  
   startDate <- paste0(ifelse(nchar(day(date_from)) == 1, paste0(0,day(date_from)),day(date_from)),".",
                       ifelse(nchar(month(date_from)) == 1, paste0(0,month(date_from)),month(date_from)),".",
                       year(date_from))
