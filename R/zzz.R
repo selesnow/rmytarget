@@ -1,9 +1,9 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.rmytarget <- list(rmytarget.url                 = "https://target.my.com/",
-                       rmytarget.client_id           = "m1W1ofkghcelGZGk",
-                       rmytarget.client_secret       = "YJMLYLFUBIW52e4qW7y39XqZebYWbzNIN8MnMo9BXA1iRhrRvX1sPGfexO4NvT97H1q1tdlegRrHyaCJHMlP1ZtKTwLanBtTvlLQVYoxa1R0GSKcUKG3Lm4eYJFI8mtHga75qn7xE4JStf9Xrwh0AhQFnxX0tQMU19fIbpTsFjwfvvgFEQ1FlmbE67Xksx6n1oz5O5RJsAZMepvgNVIEfm6V0vr2sMdlCh00B6XZdubtqXHAPM",
-                       rmytarget.default_auth_schema = "Authorization Code Grant")
+                       rmytarget.client_id           = "WsHGWRVKSAog2lkf",
+                       rmytarget.client_secret       = "jEUXvwPUZwuwWjaeMhRVk9KOIXJCbhiRgbUydmTy7T9x8wF4Uu8H1DeGbAc3vauhXFimzu1qTtAJ1rXJ0YGEN8iEqQHoW7SueiILLO3aaCwnKYIHRSkU76DRGEmNWWhYPUzy6bPrePb3VP8xYHMS3pruWr24csup7hke56UFtbNgaE1Omc3Kkkwjf1cvKrqddJ432hofWZ2PDOK8XXkqdx0Y8lFL",
+                       rmytarget.code_grant_auth     = FALSE)
   toset <- !(names(op.rmytarget) %in% names(op))
   if (any(toset)) options(op.rmytarget[toset])
   
