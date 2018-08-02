@@ -3,7 +3,10 @@ function(date_from = Sys.Date() - 7,
          date_to = Sys.Date(), 
          object_type = "campaigns",
          object_id = NULL, 
-         stat_type = "day",auth = NULL){
+         stat_type = "day",
+         auth = NULL,
+         token_path = getwd(), 
+         login = NULL){
   
   if (is.null(auth)) {
     auth <- myTarAuth(login = login, token_path = token_path)
