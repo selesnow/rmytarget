@@ -47,9 +47,11 @@ myTarAuth <-
       state <- paste0(sample(c(min_l, up_l, nums), size = 14, replace = T), collapse = "")
       
       # brows
-      browseURL(str_interp("https://target-sandbox.my.com/oauth2/authorize?response_type=code&client_id=m1W1ofkghcelGZGk&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients&permanent=true"))
+      browseURL(str_interp("${getOption('rmytarget.url')}oauth2/authorize?response_type=code&client_id=${getOption('rmytarget.client_id')}&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients"))
       code <- readline(prompt = "Enter code from browser: ")
-      raw_token <- POST(url = "https://target-sandbox.my.com/api/v2/oauth2/token.json",body = list(grant_type = "authorization_code", code = code, client_id = "m1W1ofkghcelGZGk", permanent = "true"), encode = "form")
+       
+      raw_token <- POST(url = str_interp("${getOption('rmytarget.url')}api/v2/oauth2/token.json"),
+                        body = list(grant_type = "authorization_code", code = code, client_id = "m1W1ofkghcelGZGk", permanent = "true"), encode = "form")
       parse_token <- content(raw_token, as = "parsed", type = "application/json")
       parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs")
       
@@ -67,7 +69,7 @@ myTarAuth <-
                            "&client_secret=", client_secret,
                            ifelse(grant_type == "agency_client_credentials", paste0("&agency_client_name=",agency_client_name),""))
       
-      mtAuth <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
+      mtAuth <- POST(str_interp("${getOption('rmytarget.url')}token.json"),body = query_body, content_type(type = "application/x-www-form-urlencoded"))
       
       stop_for_status(mtAuth)
       
