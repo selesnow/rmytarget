@@ -9,6 +9,6 @@ Description: Allows work with MyTarget API <https://target.my.com/adv/api-market
     load data by ads, campaings and statistic from
     your ads account.
 URL: http://selesnow.github.io/rmytarget
-Imports: httr, jsonlite, dplyr, lubridate
+Imports: httr, jsonlite, dplyr, lubridate, stringr
 Depends: R (>= 3.5.0)
 License: GPL-2
