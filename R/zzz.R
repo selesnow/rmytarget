@@ -1,9 +1,9 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.rmytarget <- list(rmytarget.url                 = "https://target.my.com/",
-                       rmytarget.client_id           = "WsHGWRVKSAog2lkf",
-                       rmytarget.client_secret       = "jEUXvwPUZwuwWjaeMhRVk9KOIXJCbhiRgbUydmTy7T9x8wF4Uu8H1DeGbAc3vauhXFimzu1qTtAJ1rXJ0YGEN8iEqQHoW7SueiILLO3aaCwnKYIHRSkU76DRGEmNWWhYPUzy6bPrePb3VP8xYHMS3pruWr24csup7hke56UFtbNgaE1Omc3Kkkwjf1cvKrqddJ432hofWZ2PDOK8XXkqdx0Y8lFL",
-                       rmytarget.code_grant_auth     = FALSE)
+                       rmytarget.client_id           = "hiM3gdQP04UE8DFR",
+                       rmytarget.client_secret       = "Jh5TZlHGKA9GarW8jYzOYsgXnlbnMtSRODkRmHhyFdfpRsG4WbUDK0bFwVm2tK4YJHCtqdyfAYZJEnwHcag9u2jsOXpRkhoGudloum1ueOsZ1KzNAvCYyExZU0HUrZK7TH4VZgx9mh6ZvJS5mRMkcwCTWLOoNWGDwKCFsYmIEwwybgj8HFmWjRdP8bOkGed6kpMPPoo7xqtVsq0U9OyBfbNEAEKHwqWXm4G",
+                       rmytarget.code_grant_auth     = TRUE)
   toset <- !(names(op.rmytarget) %in% names(op))
   if (any(toset)) options(op.rmytarget[toset])
   
@@ -30,9 +30,11 @@ ryandexdirectWelcomeMessage <- function(){
          "Blog:     https://alexeyseleznev.wordpress.com \n",
          "Facebook: https://facebook.com/selesnown \n",
          "Linkedin: https://www.linkedin.com/in/selesnow \n",
+         "Packages: https://selesnow.github.io \n"
          "\n",
          "Type ?rmytarget for the main documentation.\n",
-         "The github page is: https://github.com/selesnow/rmytarget/\n",
+         "Official documents: https://selesnow.github.io/rmytarget \n",
+         "The github page is: https://github.com/selesnow/rmytarget/ \n",
          "\n",
          "Suggestions and bug-reports can be submitted at: https://github.com/selesnow/rmytarget/issues\n",
          "Or contact: <selesnow@gmail.com>\n",
