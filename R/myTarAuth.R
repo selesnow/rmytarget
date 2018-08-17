@@ -1,8 +1,8 @@
 myTarAuth <-
   function(login              = NULL,
            grant_type         = "client_credentials", 
-           client_id          = NULL,
-           client_secret      = NULL,
+           client_id          = getOption('rmytarget.client_id'),
+           client_secret      = getOption("rmytarget.client_secret"),
            agency_client_name = NULL,
            code_grant         = getOption("rmytarget.code_grant_auth"),
            token_path         = getwd()){
@@ -23,7 +23,7 @@ myTarAuth <-
             message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
             message("Auto refreshing token")
             
-            parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = getOption("rmytarget.client_id"), client_secret = getOption("rmytarget.client_secret"))
+            parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = client_id, client_secret = client_secret)
             
             if (! is.null(parse_token$error)) {
               stop(parse_token$error,": ", parse_token$error_description)
@@ -47,11 +47,12 @@ myTarAuth <-
       state <- paste0(sample(c(min_l, up_l, nums), size = 14, replace = T), collapse = "")
       
       # brows
-      browseURL(str_interp("${getOption('rmytarget.url')}oauth2/authorize?response_type=code&client_id=${getOption('rmytarget.client_id')}&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients"))
+      browseURL(str_interp("${getOption('rmytarget.url')}oauth2/authorize?response_type=code&client_id=${client_id}&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients"))
       code <- readline(prompt = "Enter code from browser: ")
        
       raw_token <- POST(url = str_interp("${getOption('rmytarget.url')}api/v2/oauth2/token.json"),
-                        body = list(grant_type = "authorization_code", code = code, client_id = "m1W1ofkghcelGZGk", permanent = "true"), encode = "form")
+                        body = list(grant_type = "authorization_code", code = code, client_id = client_id, permanent = "true"), 
+                        encode = "form")
       parse_token <- content(raw_token, as = "parsed", type = "application/json")
       parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs")
       
