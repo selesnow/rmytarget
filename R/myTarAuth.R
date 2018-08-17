@@ -19,7 +19,7 @@ myTarAuth <-
               stop(parse_token$error,": ", parse_token$error_description)
             }
           # check expire token, and update him
-        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30) {
+        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30 & !parse_token$expires_in == 0) {
             message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
             message("Auto refreshing token")
             
@@ -47,9 +47,9 @@ myTarAuth <-
       state <- paste0(sample(c(min_l, up_l, nums), size = 14, replace = T), collapse = "")
       
       # brows
-      browseURL(str_interp("https://target-sandbox.my.com/oauth2/authorize?response_type=code&client_id=m1W1ofkghcelGZGk&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients"))
+      browseURL(str_interp("https://target-sandbox.my.com/oauth2/authorize?response_type=code&client_id=m1W1ofkghcelGZGk&state=${state}&scope=read_payments,read_ads,read_clients,read_manager_clients&permanent=true"))
       code <- readline(prompt = "Enter code from browser: ")
-      raw_token <- POST(url = "https://target-sandbox.my.com/api/v2/oauth2/token.json",body = list(grant_type = "authorization_code", code = code, client_id = "m1W1ofkghcelGZGk"), encode = "form")
+      raw_token <- POST(url = "https://target-sandbox.my.com/api/v2/oauth2/token.json",body = list(grant_type = "authorization_code", code = code, client_id = "m1W1ofkghcelGZGk", permanent = "true"), encode = "form")
       parse_token <- content(raw_token, as = "parsed", type = "application/json")
       parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs")
       
