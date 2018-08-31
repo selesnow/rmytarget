@@ -9,10 +9,11 @@ function(old_auth = NULL, client_id = NULL,client_secret = NULL){
                        "&client_id=", client_id,
                        "&client_secret=", client_secret)
   
-  mtRefrsh <- POST("https://target.my.com/api/v2/oauth2/token.json",body = query_body, content_type(type = "application/x-www-form-urlencoded"))
+  mtRefrsh <- POST(stringr::str_interp("${getOption('rmytarget.url')}api/v2/oauth2/token.json"),body = query_body, content_type(type = "application/x-www-form-urlencoded"))
   stop_for_status(mtRefrsh)
   mtRefrsh <- content(mtRefrsh, "parsed", "application/json")
   #Меняем старое значени на новое
   old_auth$access_token <- mtRefrsh$access_token
   return(old_auth)
 }
+
