@@ -20,7 +20,7 @@ function(date_from = Sys.Date() - 7,
                     ifelse(nchar(month(date_to)) == 1, paste0(0,month(date_to)),month(date_to)),".",
                     year(date_to))
   
-  query_body <- paste0(stringr::str_interp("${getOption('rmytarget.url')}api/v1/statistics/"),object_type,ifelse(is.null(object_id),"",paste(object_id,collapse = ";")),"/",stat_type,"/",startDate,"-",endDate,".json")
+  query_body <- paste0(stringr::str_interp("${getOption('rmytarget.url')}api/v1/statistics/"),object_type,"/",ifelse(is.null(object_id),"",paste(object_id,collapse = ";")),"/",stat_type,"/",startDate,"-",endDate,".json")
   
   statanswer <- GET(query_body, add_headers(Authorization = paste0("Bearer ",auth$access_token)))  
   stop_for_status(statanswer)
