@@ -31,6 +31,7 @@ ryandexdirectWelcomeMessage <- function(){
          "Facebook: https://facebook.com/selesnown \n",
          "Linkedin: https://www.linkedin.com/in/selesnow \n",
          "Packages: https://selesnow.github.io \n",
+		 "Rdocumentation: https://www.rdocumentation.org/collaborators/name/Alexey%20Seleznev \n",
          "\n",
          "Type ?rmytarget for the main documentation.\n",
          "Web page for main documentation: https://selesnow.github.io/rmytarget",

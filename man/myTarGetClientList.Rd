@@ -1,32 +1,33 @@
 \name{myTarGetClientList}
 \alias{myTarGetClientList}
 \title{Get data frame with agency clients}
-\description{myTarGetClientList load data frame with agency client list.}
+\description{Load data frame with agency client list from 'MyTarget'.}
 \usage{
-myTarGetClientList(auth = NULL)
+myTarGetClientList(auth = NULL, token_path = getwd(), 
+  login = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{auth}{Authorization R object}
+  \item{auth}{MyTarget Autherization R object.}
+  \item{login}{Your login, or client name in MyTarget account}
+  \item{token_path}{Path to directory where you save credential data}
 }
-\details{}
+\details{
+Use only for agency account.
+}
 \value{
-%%  \item{clients }{Client name in your agancy account}
-%%  \item{user }{Client user ID in MyTarget}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
+Data frame with clients account parameters
 }
 \author{
 Alexey Seleznev
 }
-
 \seealso{
-MyTarget API Documenation - https://target.my.com/doc/api/detailed/#resource_campaigns
+{MyTarget API Documenation}{https://target.my.com/doc/api/detailed/#resource_agency_clients}
 }
 \examples{
-myTargetClients <- myTarGetClientList(mtAuth)
+\dontrun{
+clients <- myTarGetClientList(login = "agency_login")
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

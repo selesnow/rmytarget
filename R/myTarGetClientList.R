@@ -8,7 +8,7 @@ function(auth = NULL, token_path = getwd(), login = NULL){
   answer <- content(asw, "parsed", "application/json")
   
   clients <- data.frame(clients = character(), user = character(), stringsAsFactors = F)
-  #Íàçâàíèå ëþáîãî àêêàóíòà
+
   for(i in 1:length(answer)){
     clients <- rbind(clients, data.frame(clients = answer[[i]]$additional_info$client_name,user = answer[[i]]$username))
   }

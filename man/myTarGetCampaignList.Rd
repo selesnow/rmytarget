@@ -2,34 +2,29 @@
 \alias{myTarGetCampaignList}
 
 \title{Get campaign list.}
-\description{myTarGetCampaignList get data frame with myTarget campaing id, name and parameters}
+\description{Get data frame with 'MyTarget' campaing id, name and parameters}
 \usage{
-myTarGetCampaignList(auth = NULL)
+myTarGetCampaignList(auth = NULL, login = NULL, token_path = getwd())
 }
 
 \arguments{
-  \item{auth}{ MyTarget Autherization R object.}
+  \item{auth}{MyTarget Autherization R object.}
+  \item{login}{Your login, or client name in MyTarget account}
+  \item{token_path}{Path to directory where you save credential data}
 }
-\details{}
 \value{
 Data frame with campaigns list
-}
-\references{
-%% ~put references to the literature/web site here ~
 }
 \author{
 Alexey Seleznev
 }
-\note{
-}
-
-
-
 \seealso{
-MyTarget API ocumentation - https://target.my.com/doc/api/detailed/#resource_import_campaign
+\href{MyTarget API ocumentation}{https://target.my.com/doc/api/detailed/#resource_campaigns}
 }
 \examples{
+\dontrun{
 myTargetCampaign <- myTarGetCampaignList(myTargetAuth)
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -1,14 +1,16 @@
 Package: rmytarget
 Type: Package
-Title: Load Data From MyTarget API
-Version: 1.2
-Date: 2018-08-31
+Title: Load Data from 'MyTarget API'
+Version: 1.1
+Date: 2018-09-12
 Author: Alexey Seleznev
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
-Description: Allows work with MyTarget API <https://target.my.com/adv/api-marketing/> and
-    load data by ads, campaings and statistic from
+Description: Allows work with 'MyTarget API' <https://target.my.com/adv/api-marketing/> and
+    load data by ads, campaigns and statistic from
     your ads account.
 URL: http://selesnow.github.io/rmytarget
 Imports: httr, jsonlite, dplyr, lubridate, stringr
 Depends: R (>= 3.5.0)
 License: GPL-2
+Encoding: UTF-8
+Suggests: testthat
