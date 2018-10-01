@@ -4,6 +4,9 @@
 
 # rmytarget - пакет для работы с API MyTarget на языке R.
 
+## CRAN
+[![Rdoc](http://www.rdocumentation.org/badges/version/rmytarget)](http://www.rdocumentation.org/packages/rmytarget)
+
 ## Краткое описание.
 
 Пакет rmytarget помогает получить дата фрейм со списком клиентов агентств из аккаунта MyTarget, получить список и обшие параметры рекламных кампаний по каждому из проектов, а так же получить детальную статистику по кампаниям за каждый день.
