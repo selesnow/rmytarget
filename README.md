@@ -10,17 +10,21 @@
 
 ## Установка пакета rmytarget.
 
-Установка пакета осуществляется из репозитория GitHub, для этого сначала требуется установить и подключить пакет devtools.
+Установка пакета осуществляется либо из CRAN, либо из репозитория GitHub, для этого сначала требуется установить и подключить пакет devtools.
 
-`install.packages("devtools")`
+Установка из CRAN: `install.packages("rmytarget")`
 
-`library(devtools)`
+Для установки dev версии пакета из GitHub необходимо предварительно установить пакет `devtools`, и с его помощью уже устанавлиать `rmytarget`:
 
-После чего можно устанавливать пакет rmytarget.
+```r
+install.packages("devtools")
 
-`install_github('selesnow/rmytarget')`
+library(devtools)
 
-`library(rmytarget)`
+install_github('selesnow/rmytarget')
+
+library(rmytarget)
+```
 
 ### Ссылки
 1. [Документация по работе с пакетом rmytarget](https://selesnow.github.io/rmytarget/).
