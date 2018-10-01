@@ -115,6 +115,10 @@ li.nm_li {
 * [Отчёт об ошибках и доработках](https://github.com/selesnow/rmytarget/issues)
 * [Список релизов](https://github.com/selesnow/rmytarget/releases)
 * [Группа в Вконтакте](https://vk.com/data_club)
+* [RDocumentation](https://www.rdocumentation.org/packages/rmytarget/)
+
+## CRAN
+[![Rdoc](http://www.rdocumentation.org/badges/version/rmytarget)](http://www.rdocumentation.org/packages/rmytarget)
 
 ## Содержание README:
 
@@ -132,18 +136,20 @@ li.nm_li {
 
 ## Установка пакета rmytarget.
 
-Установка пакета осуществляется из репозитория GitHub, для этого сначала требуется установить и подключить пакет devtools.
+Установка пакета осуществляется либо из CRAN, либо из репозитория GitHub, для этого сначала требуется установить и подключить пакет devtools.
 
-`install.packages("devtools")`
+Установка из CRAN: `install.packages("rmytarget")`
 
-`library(devtools)`
+Для установка dev версии из GitHub предварительно вам необходимо установить пакет `devtools`, и уже с его помощью устанавлиать `rmytarget`:
 
-После чего можно устанавливать пакет rmytarget.
+```r
+install.packages("devtools")
+library(devtools)
 
-`install_github('selesnow/rmytarget')`
-
-`library(rmytarget)`
-
+# После чего можно устанавливать пакет rmytarget.
+install_github('selesnow/rmytarget')
+library(rmytarget)
+```
 
 ## Авторизация в API MyTarget.
 Авторизация в API через `rmytarget` осуществляется по схеме авторизации *Authorization Code Grant*, подробнее о способах авторизации можно узнать в [официальной справке API MyTarget](https://target.my.com/adv/api-marketing/doc/authorization).
