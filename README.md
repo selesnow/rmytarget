@@ -36,7 +36,7 @@ library(rmytarget)
 4. [Группа в Вконтакте](https://vk.com/data_club).
 
 ### Автор пакета
-Алексей Селезнёв
+Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
 <Br>email: selesnow@gmail.com
 <Br>skype: selesnow
 <Br>facebook: [facebook.com/selesnow](https://facebook.com/selesnow)
