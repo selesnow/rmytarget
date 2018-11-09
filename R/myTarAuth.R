@@ -66,8 +66,8 @@ myTarAuth <-
 		ans <- readline("y / n (recomedation - y): ")
 		if ( tolower(ans) %in% c("y", "yes", "ok", "save") ) {
 		  # create folder if need
-		  if (!dir.exists(TokenPath)) {
-		    dir.create(TokenPath)
+		  if (!dir.exists(token_path)) {
+		    dir.create(token_path)
 		  }
 			save(parse_token, file = paste0(token_path, "/", login, ".mytar.Auth.RData"))
 			message("Token saved at ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
