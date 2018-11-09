@@ -19,20 +19,22 @@ myTarAuth <-
               stop(parse_token$error,": ", parse_token$error_description)
             }
           # check expire token, and update him
-        if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30 & !parse_token$expires_in == 0) {
-            message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
-            message("Auto refreshing token")
-            
-            parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = client_id, client_secret = client_secret)
-            
-            if (! is.null(parse_token$error)) {
-              stop(parse_token$error,": ", parse_token$error_description)
-            }
-            
-            parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs") 
-            save(parse_token, file = paste0(token_path, "/", login, ".mytar.Auth.RData"))
-            message("Token saved at ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
-            return(parse_token)
+        if ( !length(parse_token$expire_at) == 0 ) {
+            if (as.numeric(parse_token$expire_at - Sys.time(), units = "mins") < 30 & !is.null(parse_token$expires_in) ) {
+                message("Token expire after ", round(as.numeric(parse_token$expire_at - Sys.time(), units = "mins"), 0), " mins")
+                message("Auto refreshing token")
+                
+                parse_token <- myTarRefreshToken(old_auth = parse_token, client_id = client_id, client_secret = client_secret)
+                
+                if (! is.null(parse_token$error)) {
+                  stop(parse_token$error,": ", parse_token$error_description)
+                }
+                
+                parse_token$expire_at <- Sys.time() + as.numeric(parse_token$expires_in, units = "secs") 
+                save(parse_token, file = paste0(token_path, "/", login, ".mytar.Auth.RData"))
+                message("Token saved at ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
+                return(parse_token)
+        }
             
           } else {
             # return token if he live more than 60 mins
