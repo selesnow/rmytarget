@@ -7,7 +7,7 @@ myTarAuth <-
            code_grant         = getOption("rmytarget.code_grant_auth"),
            token_path         = getwd()){
     
-   
+    
     if (code_grant == TRUE) {
 
       # try load token
@@ -65,6 +65,10 @@ myTarAuth <-
 		message("Do you want save API credential in local file (",paste0(token_path, "/", login, ".rymAuth.RData"),"), for use it between R sessions?")
 		ans <- readline("y / n (recomedation - y): ")
 		if ( tolower(ans) %in% c("y", "yes", "ok", "save") ) {
+		  # create folder if need
+		  if (!dir.exists(TokenPath)) {
+		    dir.create(TokenPath)
+		  }
 			save(parse_token, file = paste0(token_path, "/", login, ".mytar.Auth.RData"))
 			message("Token saved at ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
 		}
