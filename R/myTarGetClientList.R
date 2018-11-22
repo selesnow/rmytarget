@@ -1,17 +1,45 @@
 myTarGetClientList <-
-function(auth = NULL, token_path = getwd(), login = NULL){
-  if (is.null(auth)) {
-    auth <- myTarAuth(login = login, token_path = token_path)
+  function(auth = NULL, token_path = getwd(), login = NULL){
+    if (is.null(auth)) {
+      auth <- myTarAuth(login = login, token_path = token_path)
     }
-  asw <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v1/clients.json"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
-  stop_for_status(asw)
-  answer <- content(asw, "parsed", "application/json")
-  
-  clients <- data.frame(clients = character(), user = character(), stringsAsFactors = F)
-
-  for(i in 1:length(answer)){
-    clients <- rbind(clients, data.frame(clients = answer[[i]]$additional_info$client_name,user = answer[[i]]$username))
+    
+    limit  <- 5
+    offset <- 0
+    count  <- NULL
+    result <- list()
+    clients <- list()
+    
+    while ( is.null(count) || count > offset ) {
+      
+    asw <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v2/agency/clients.json"),
+               query = list(limit  = limit,
+                            offset = offset),
+               add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+    stop_for_status(asw)
+    answer <- content(asw, "parsed", "application/json")
+    
+    for ( i in answer$items ) {
+      temp <- list( id = i$user$id,
+                    username = i$user$username,
+                    userstatus = i$user$status,
+                    a_balance = i$user$account$a_balance,
+                    balance = i$user$account$balance,
+                    type = i$user$account$type,
+                    client_info = i$user$additional_info$client_info,
+                    client_name = i$user$additional_info$client_name,
+                    status = i$status,
+                    access_type = i$access_type, 
+                    status = i$status  )
+      
+       clients <- append(clients, list(temp))
+    }
+    
+    count  <- answer$count
+    offset <- offset + limit
+    }
+    
+    clients <- bind_rows(clients) 
+    
+    return(clients)
   }
-  return(clients)
-}
-

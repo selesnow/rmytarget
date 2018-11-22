@@ -1,6 +1,7 @@
 \name{rmytarget-package}
 \alias{rmytarget-package}
 \alias{rmytarget}
+\alias{rmytarget2}
 \docType{package}
 \title{Paxkage for load data from 'MyTarget API'.}
 \description{Load data from API 'MyTarget' into R, by agancy clients and campaigns}
@@ -12,8 +13,9 @@ The DESCRIPTION file:
 }
 \author{Alexey Seleznev}
 \references{
-\href{1. MyTarget API documents}{https://target.my.com/adv/api-marketing/doc/}
-\href{2. Authorization}{https://target.my.com/adv/api-marketing/doc/authorization}
+\href{1. MyTarget API documents}{https://target.my.com/doc/apiv2/ru/detailed.html}
+\href{2. MyTarget API statistic methods}{https://target.my.com/adv/api-marketing/doc/stat-v2}
+\href{3. Authorization}{https://target.my.com/adv/api-marketing/doc/authorization}
 }
 
 \keyword{ package }
@@ -27,25 +29,44 @@ Ads <- myTarGetAdList(login = "my_test_client")
 Campaigns <- myTarGetCampaignList(login = "my_test_client")
 
 # Get statistic
-## Get summary statistic						  
-t_stat<- myTarGetTotalStats(date_to = "2016-08-02",
-                            date_to = "2016-08-10",
-							login = "my_test_client")
+# base metrics by campaigns
+base_data <- myTarGetTotalData(date_from   = Sys.Date() - 7,
+                               date_to     = Sys.Date(),
+                               object_type = "campaigns",
+                               object_id = Campaigns$id,
+                               metrics = "base",
+                               stat_type = "day",
+                               login = "my_test_client", 
+                               token_path = "mytarget_token")
 
-## Get stat by campaigns
-c_stat <- myTarGetStats(date_from = "2016-08-01",
-                        date_to = "2016-08-10",
-                        object_type = "campaigns",
-                        object_id = cCampaigns$id,
-                        stat_type = "day",
-						login = "my_test_client")
-						
-## Get stat by ads
-a_stat <- myTarGetStats(date_from = "2016-08-01",
-                        date_to = "2016-08-10",
-                        object_type = "banners",
-                        object_id = Ads$id,
-                        stat_type = "day",
-						login = "my_test_client")
+# all metrics by campaigns
+all_data <- myTarGetTotalData(date_from   = Sys.Date() - 7,
+                              date_to     = Sys.Date(),
+                              object_type = "campaigns",
+                              object_id = Campaigns$id,
+                              metrics = "all",
+                              stat_type = "day",
+                              login = "my_test_client", 
+                              token_path = "mytarget_token")
+
+# custom set of metric by campaigns
+custom_data <- myTarGetTotalData(date_from   = Sys.Date() - 7,
+                                 date_to     = Sys.Date(),
+                                 object_type = "campaigns",
+                                 object_id = Campaigns$id,
+                                 metrics = c("base", "tps", "viral"),
+                                 stat_type = "day",
+                                 login = "my_test_client", 
+                                 token_path = "mytarget_token")
+
+
+# if have note objects id, base metrics by ads
+base_data2 <- myTarGetStats(date_from   = as.Date("2013-01-01"),
+                                date_to     = Sys.Date(),
+                                object_type = "banners",
+                                metrics = "base",
+                                stat_type = "day",
+                                login = "my_test_client", 
+                                token_path = "mytarget_token")
 }
 }

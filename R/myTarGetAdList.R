@@ -4,26 +4,48 @@ myTarGetAdList <-
     if (is.null(auth)) {
       auth <- myTarAuth(login = login, token_path = token_path)
     }
-
     
-    ads <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v1/banners.json?fields=id,status,system_status,url,campaign,textblocks,moderation_status,created,updated"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
-    stop_for_status(ads)
-    adsRaw <- content(ads, "parsed", "application/json")
+    limit  <- 50
+    offset <- 0
+    count  <- NULL
+    result <- list()
     
-    adsList <- data.frame()
+    packageStartupMessage("Loading |",appendLF = F)
     
-    for (i in seq_along(1:length(adsRaw))) {
-          adsList <- rbind(adsList, 
-                      data.frame(id               = adsRaw[[i]]$id,
-                                status            = adsRaw[[i]]$status,
-                                moderation_status = adsRaw[[i]]$moderation_status,
-                                system_status     = adsRaw[[i]]$system_status,
-                                url               = adsRaw[[i]]$url,
-                                campaign_id       = adsRaw[[i]]$campaign$id,
-                                updated           = adsRaw[[i]]$updated))
+    while ( is.null(count) || count > offset ) {
+      ads <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v2/banners.json?fields=id,status,urls,campaign_id,textblocks,moderation_status,created,updated,call_to_action&limit=${limit}&offset=${offset}"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+      stop_for_status(ads)
+      adsRaw <- content(ads, "parsed", "application/json")
+      
+      for (i in 1:length(adsRaw$items)) {
+        temp <- list(id                = adsRaw$items[[i]]$id,
+                     status            = adsRaw$items[[i]]$status,
+                     updated           = adsRaw$items[[i]]$updated,
+                     moderation_status = adsRaw$items[[i]]$moderation_status,
+                     call_to_action    = adsRaw$items[[i]]$call_to_action,
+                     created           = adsRaw$items[[i]]$created,
+                     campaign_id       = adsRaw$items[[i]]$campaign_id,
+                     title             = adsRaw$items[[i]]$textblocks$primary$title,
+                     text              = adsRaw$items[[i]]$textblocks$primary$text,
+                     url               = adsRaw$items[[i]]$urls$primary$url,
+                     url_object_id     = adsRaw$items[[i]]$urls$primary$url_object_id,
+                     url_object_type   = adsRaw$items[[i]]$urls$primary$url_object_type,
+                     url_id            = adsRaw$items[[i]]$urls$primary$id)
+        
+        result <- append(result, list(temp))
+        rm(temp)
+        
+      }
+      
+      packageStartupMessage("=",appendLF = F)
+      Sys.sleep(0.7)
+      count  <- adsRaw$count
+      offset <- offset + limit
+      
     }
     
+    packageStartupMessage("| Done",appendLF = T)
+    adsList <- data.frame(do.call("rbind", result))
     return(adsList)
   }
-
 
