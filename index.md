@@ -125,7 +125,7 @@ li.nm_li {
 ## Содержание README:
 
 * [Установка пакета rmytarget](https://github.com/selesnow/rmytarget#Краткое-описание)
-- [Пример кода для получения данных из API MyTarget с использованием rmytarget]
+- [Пример кода для получения данных из API MyTarget с использованием rmytarget](#пример-кода-для-загрузки-данных-из-api-mytarget)
 - [Авторизация в API MyTarget](https://github.com/selesnow/rmytarget#Авторизация-в-api-mytarget)
 - [Обновление токена доступа после истечение срока действия](https://github.com/selesnow/rmytarget/blob/master/README.md#Обновление-токена-доступа)
 - [Получение списка клиентов для агентского аккаунта](https://github.com/selesnow/rmytarget#Получение-списка-клиентов-для-агентского-аккаунта)
