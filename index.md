@@ -116,6 +116,7 @@ li.nm_li {
 * [Документация](https://selesnow.github.io/rmytarget/)
 * [Отчёт об ошибках и доработках](https://github.com/selesnow/rmytarget/issues)
 * [Список релизов](https://github.com/selesnow/rmytarget/releases)
+* [Телеграм канал R4marketing](http://t.me/R4marketing)
 * [Группа в Вконтакте](https://vk.com/data_club)
 * [RDocumentation](https://www.rdocumentation.org/packages/rmytarget/)
 
@@ -130,7 +131,7 @@ li.nm_li {
 - [Обновление токена доступа после истечение срока действия](https://github.com/selesnow/rmytarget/blob/master/README.md#Обновление-токена-доступа)
 - [Получение списка клиентов для агентского аккаунта](https://github.com/selesnow/rmytarget#Получение-списка-клиентов-для-агентского-аккаунта)
 - [Получение списка рекламных кампаний](https://github.com/selesnow/rmytarget#Получение-списка-рекламных-кампаний)
-- [Получение списка объявлений]()
+- [Получение списка объявлений](#получение-списка-объявлений)
 - [Получение общей статистики по всем рекламным кампаниям аккаунта](https://github.com/selesnow/rmytarget#Получение-общей-статистики-по-всем-рекламным-кампаниям-аккаунта)
 
 ## Краткое описание.
