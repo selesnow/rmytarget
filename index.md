@@ -125,6 +125,7 @@ li.nm_li {
 ## Содержание README:
 
 * [Установка пакета rmytarget](https://github.com/selesnow/rmytarget#Краткое-описание)
+- [Пример кода для получения данных из API MyTarget с использованием rmytarget]
 - [Авторизация в API MyTarget](https://github.com/selesnow/rmytarget#Авторизация-в-api-mytarget)
 - [Обновление токена доступа после истечение срока действия](https://github.com/selesnow/rmytarget/blob/master/README.md#Обновление-токена-доступа)
 - [Получение списка клиентов для агентского аккаунта](https://github.com/selesnow/rmytarget#Получение-списка-клиентов-для-агентского-аккаунта)
@@ -153,6 +154,38 @@ install_github('selesnow/rmytarget')
 library(rmytarget)
 ```
 
+## Пример кода для загрузки данных из API MyTarget
+```r
+library(rmytarget)
+myTarAuth()
+campaing <- myTarGetCampaignList(login = "seleznev", token_path = "C:\\my_develop_workshop\\cource_testspace\\tokens")
+ads      <- myTarGetAdList(login = "seleznev", token_path = "C:\\my_develop_workshop\\cource_testspace\\tokens")
+
+old_data    <- myTarGetStats(date_from   = Sys.Date() - 7,
+                             date_to     = Sys.Date(),
+                             object_type = "campaigns",
+                             object_id   = campaing$id,
+                             stat_type   = "day",
+                             login       = "seleznev", 
+                             token_path  = "C:\\my_develop_workshop\\cource_testspace\\tokens")
+
+custom_data <- myTarGetStats(date_from   = Sys.Date() - 7,
+                             date_to     = Sys.Date(),
+                             object_type = "campaigns",
+                             metrics     = c("base", "tps", "viral"),
+                             stat_type   = "day",
+                             login       = "seleznev", 
+                             token_path  = "C:\\my_develop_workshop\\cource_testspace\\tokens")
+
+
+all_data <- myTarGetStats(date_from   = Sys.Date() - 7,
+                          date_to     = Sys.Date(),
+                          object_type = "campaigns",
+                          metrics     = "all",
+                          login       = "seleznev", 
+                          token_path  = "C:\\my_develop_workshop\\cource_testspace\\tokens")
+```
+
 ## Авторизация в API MyTarget.
 Авторизация в API через `rmytarget` осуществляется по схеме авторизации *Authorization Code Grant*, подробнее о способах авторизации можно узнать в [официальной справке API MyTarget](https://target.my.com/adv/api-marketing/doc/authorization).
 
@@ -160,6 +193,18 @@ library(rmytarget)
 ```r
 myTarAuth(login = "my_test_client")
 ```
+
+После запуска функции откроется окно браузера, в котором вам необходимо подтвердить разрешение на оступ к вашим данным для пакета rmytarget. Если вы работаете через **агентский** аккаунт, то в открывшемся окне у вас будет возможность выбора, сгенерировать токен для вашего агентского акккаунта, или же получить токен для работы с одним прикреплённых к нему клиентских аккаунтов.
+
+Для работы с агентским аккаунтом выберите верхний пункт.
+
+![генерация токена для агентского аккаунта](https://img.netpeak.ua/alsey/154523525673_kiss_31kb.png)
+
+В таком случае вы сможете запрашивать список киентов агентского аккаунта, или получить статистику сгруппированную по клиетским аккаунтам. Но такой токен не позволяет запрашивать например список объявлений, или рекламных кампаний из подчинённых, клиентских аккаунтов.
+
+Если же вам необходимо получить какие либо данные из подчинённого клиентского аккаунта то при авторизации через браузер выберите пункт "Предоставить доступ к аккаунту клиента или менеджера".
+
+![Генерация токена для работы с клеинтским аккаунтом](https://img.netpeak.ua/alsey/154523530679_kiss_35kb.png)
 
 Далее в рабочей директории будет создан файл хранящий учётные данные, название файла будет начинаться с указаннолого логина и далее *.mytar.Auth.RData*.
 
