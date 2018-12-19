@@ -173,7 +173,8 @@ myTarAuth(login = "my_test_client")
 ```r
 myTargetAuth <- myTarAuth(grant_type = "client_credentials",
                           client_id = "XXXXXXXXXX",
-                          client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")		
+                          client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			  code_grant = FALSE)		
 ```
 
 Аргументы:
@@ -186,7 +187,8 @@ client_secret - Выдаётся вам при подтверждение дос
 myTargetAuth <- myTarAuth(grant_type = "agency_client_credentials",
                           client_id = "XXXXXXXXXX",
                           client_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                          agency_client_name = "xxxxxxxxx@agency_client")
+                          agency_client_name = "xxxxxxxxx@agency_client",
+			  code_grant = FALSE)
 ```
 
 Вариант grant_type=agency_client_credentials не является стандартным для OAuth2. Он реализован для того, чтобы агентства могли создавать access-токены для своих клиентов напрямую. Помимо параметров client_id, client_secret нужно передавать agency_client_name.
@@ -233,51 +235,31 @@ auth - Объект R с авторизационными данными, пол
 
 Более полная информация находится в официальной документации к API по [ссылке](https://target.my.com/doc/api/detailed/#resource_campaigns)
 
-## Получение общей статистики по всем рекламным кампаниям аккаунта.
-Функция доступна для рекламных аккаунтов в которых есть рекламные кампании.
+## Получение статистики по рекламным аккаунтам и объявлениям.
+Для загрузки статистики необходимо использовать функцию `myTarGetStats`.
 
-```r
-myTargetSummary <- myTarGetTotalStats(date_from = "2016-08-01",
-                                      date_to = "2016-08-10",
-                                      auth = myTargetAuth)
-```
-Функция возвращает data frame со статистикой по рекламным кампаниям в разрезе дат.
+Аргументы функции:
+- date_from - Дата начала отчётного периода
+- date_to - Дата звершения отчётоного периода
+- object_type - Тип объекта по которому будут группироваться полученные данные, возможные значения banners, campaings и users. Группировка users доступна только при работе с агентскими аккаунтами, и предназначена для загрузки статистики в разрезе клиентов агентского аккаунта. 
+- object_id - Необязательный аргумент, ID объектов по которым вы хотите получить статистику, зависит от значения установленного в аргумент object_type. По умолчанию запрашивается статистика по всем объектам указанного в аргументе object_type типа.
+- stat_type - Временная группировка данных, по умолчанию "day", так же можно загружать статистику за весь период указав значение "summary".
+- metrics - Вектор, содержащий названия групп метрик которые вы хотите получить, по умолчанию принимает значение base, но так же вам доступны такие группы: base, events, video, viral, uniques, tps. Для загрузки всех метрик укажите значение "all". Подробное описание метрик входящих в каждую группу доступно по [ссылке](https://target.my.com/adv/api-marketing/doc/stat-v2), или чуть ниже в этой документации.
+- auth - Необяхательный аргумент, объект который можно получить с помощью функции myTarAuth.
+- token_path - Путь к папке в которой хранится файл с учётными данными, файл создаётся при первом обращении к API MyTarget в случае запуска любой из функций пакета, далее учётые данные подтягиваются по значению аргумента login. **Будьтк внимательны, т.к. API MyTagrteg позволяет запрашивать не более 5 токен для одного аккаунта**.
 
-Структура полученного data frame.
-<table>
-    <tr>
-        <td><center>Поле</center></td><td><center>Тип данных</center></td><td><center>Описание</center></td>
-    </tr>
-    <tr>
-        <td><center>Date</center></td><td><center>Date</center></td><td><center>Дата</center></td>
-    </tr>
-    <tr>
-        <td><center>CampaignName</center></td><td><center>Character</center></td><td><center>Название рекламной кампании</center></td>
-    </tr>
-    <tr>
-        <td><center>CampaignID</center></td><td><center>Character</center></td><td><center>ID рекламной кампании</center></td>
-    </tr>
-    <tr>    
-        <td><center>Reach</center></td><td><center>integer</center></td><td><center>Охват, количество уникальных пользователей которым были показаны объявления за всё время ведения рекламной кампании</center></td>
-    </tr>
-     <tr>
-        <td><center>CTR</center></td><td><center>Numeric</center></td><td><center>Кликабельность объявлений</center></td>
-    </tr>
-    <tr>
-        <td><center>Cost</center></td><td><center>Numeric</center></td><td><center>Сумма списаний по рекламной кампании в рублях</center></td>
-    </tr>
-    <tr>
-        <td><center>Impressions</center></td><td><center>integer</center></td><td><center>Количество показов</center></td>
-    </tr>
-    <tr>
-        <td><center>Clicks</center></td><td><center>integer</center></td><td><center>Количество кликов</center></td>
-    </tr>
-    <tr>
-        <td><center>UniquesIncrement</center></td><td><center>integer</center></td><td><center>Прирост новых уникальных пользователей увидивших объявления впервые</center></td>
-    </tr>
-</table> 
-
----
+### Группы метрик которые можно задавать в аргументе metrics:
+<details><summary>base - базовые метрики:</summary>
+* shows - количество показов;
+* clicks - количество кликов;
+* goals - количество достижений целей (цели Top@Mail.ru для сайтов и установок для мобильных приложений);
+* spent - списания;
+* cpm - среднее списание за 1000 просмотров;
+* cpc - среднее списание за 1 клик;
+* cpa - среднее списание за достижение 1 цели;
+* ctr - процентное отношение количества кликов к количеству просмотров;
+* cr - процентное отношение количества достижений целей к количеству кликов.
+</details>
 
 ## *Автор пакета: Алексей Селезнёв, Head of Analytics Dept. at Netpeak*
 <table>
