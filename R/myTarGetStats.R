@@ -30,11 +30,12 @@ myTarGetStats <-
       # define function
       f <- switch(object_type,
                   "campaigns" = "myTarGetCampaignList",
-                  "banners"   = "myTarGetAdList")
+                  "banners"   = "myTarGetAdList",
+				  "users"     = "myTarGetClientList")
       # load obj
       objects <- do.call(f, 
-                         list(login = "olx_instals",
-                              token_path = "C:\\my_develop_workshop\\mytarget_token"))
+                         list(login = login,
+                              token_path = token_path))
       
       object_id <- objects$id
     }

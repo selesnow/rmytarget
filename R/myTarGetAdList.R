@@ -1,10 +1,22 @@
 myTarGetAdList <-
-  function(auth = NULL, login = NULL, token_path = getwd()){
+  function(auth = NULL, 
+           login = NULL, 
+		   token_path = getwd(),
+		   request_speed = 1.2){
     
+	
     if (is.null(auth)) {
       auth <- myTarAuth(login = login, token_path = token_path)
     }
     
+	if ( request_speed %in% c("slow", "normal", "fast")) {
+		  
+		  request_speed <- switch(EXPR     = request_speed,
+								  "slow"   = 2,
+								  "normal" = 1.2,
+								  "fast"   = 0.8)
+    }
+
     limit  <- 50
     offset <- 0
     count  <- NULL
@@ -38,7 +50,7 @@ myTarGetAdList <-
       }
       
       packageStartupMessage("=",appendLF = F)
-      Sys.sleep(0.7)
+      Sys.sleep(request_speed)
       count  <- adsRaw$count
       offset <- offset + limit
       
