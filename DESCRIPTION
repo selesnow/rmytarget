@@ -15,4 +15,5 @@ Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 License: GPL-2
+Language: ru
 Encoding: UTF-8
