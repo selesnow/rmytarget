@@ -1,8 +1,8 @@
 Package: rmytarget
 Type: Package
 Title: Load Data from 'MyTarget API v2'
-Version: 2.1.2
-Date: 2019-01-03
+Version: 2.1.3
+Date: 2019-02-14
 Author: Alexey Seleznev
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'MyTarget API v2' 
@@ -11,7 +11,8 @@ Description: Allows work with 'MyTarget API v2'
 	your ads account.
 URL: http://selesnow.github.io/rmytarget
 Imports: httr, dplyr, lubridate, stringr
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
-Suggests: testthat

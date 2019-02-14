@@ -1,39 +1,47 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-rmytarget - R РїР°РєРµС‚ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ API MyTarget v2
-================================================
 
-РџРѕРґСЂРѕР±РЅР°СЏ СЂСѓСЃСЃРєРѕСЏР·С‹С‡РЅР°СЏ РґРѕРєСѓРјРµРЅС‚Р°С†РёСЏ РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ [СЃСЃС‹Р»РєРµ](https://selesnow.github.io/rmytarget).
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# rmytarget - R пакет для работы с API MyTarget v2
 
-Р’РёРЅСЊРµС‚РєРё
-========
+Подробная русскоязычная документация находится по [ссылке](https://selesnow.github.io/rmytarget).
 
-РџРѕРјРёРјРѕ РѕСЃРЅРѕРІРЅРѕР№ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё РїР°РєРµС‚ СЃРѕРґРµСЂР¶РёС‚ 2 РІРёРЅСЊРµС‚РєРё:
+# Виньетки
 
--   rmytarget-auth - РђРІС‚РѕРѕСЂРёР·Р°С†РёСЏ РІ API MyTarget
--   rmytarget-intro - Р’РІРµРґРµРЅРёРµ РІ СЂР°Р±РѕС‚Сѓ СЃ РїР°РєРµС‚РѕРј rmytarget
+Помимо основной документации пакет содержит 2 виньетки:
 
-Р”Р»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РІРёРЅСЊРµС‚РѕРє Р·Р°РїСѓСЃС‚РёС‚Рµ РІ R РѕРґРЅСѓ РёР· СЃР»РµРґСѓСЋС‰РёС… РєРѕРјР°РЅРґ:
+* rmytarget-auth - Автооризация в API MyTarget
+* rmytarget-intro - Введение в работу с пакетом rmytarget
+
+Для просмотра виньеток запустите в R одну из следующих команд:
 
 `vignette('rmytarget-auth', package = 'rmytarget')`
 
 `vignette('rmytarget-intro', package = 'rmytarget')`
 
-Р¤СѓРЅРєС†РёРё РїР°РєРµС‚Р° rmytarget
-========================
+# Функции пакета rmytarget
 
-РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІ РїР°РєРµС‚Рµ rmytarget РґРѕСЃС‚СѓРїРЅРѕ 5 С„СѓРЅРєС†РёР№:
+На данный момент в пакете rmytarget доступно 5 функций:
 
--   myTarAuth - РђРІС‚РѕСЂРёР·Р°С†РёСЏ
--   myTarGetCampaignList - Р—Р°РіСЂСѓР·РєР° СЃРїРёСЃРєР° РєР°РјРїР°РЅРёР№
--   myTarGetAdList - Р—Р°РіСЂСѓР·РєР° СЃРїРёСЃРєР° РѕР±СЉСЏРІР»РµРЅРёР№
--   myTarGetClientList - Р—Р°РіСЂСѓР·РєР° СЃРїРёСЃРєР° РєР»РёРµРЅС‚РѕРІ РёР· Р°РіРµРЅС‚СЃРєРѕРіРѕ Р°РєРєР°СѓРЅС‚Р°
--   myTarGetStats - Р—Р°РіСЂСѓР·РєР° СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕ РѕР±СЉСЏРІРµРЅРёСЏРј, СЂРµРєР»Р°РјРЅС‹Рј РєР°РјРїР°РЅРёСЏРј РёР»Рё РєР»РёРµРЅС‚Р°Рј
+* myTarAuth - Авторизация
+* myTarGetCampaignList - Загрузка списка кампаний
+* myTarGetAdList - Загрузка списка объявлений
+* myTarGetClientList - Загрузка списка клиентов из агентского аккаунта
+* myTarGetStats - Загрузка статистики по объявениям, рекламным кампаниям или клиентам
 
-РџСЂРёРјРµСЂ СЂР°Р±РѕС‚С‹ СЃ РїР°РєРµС‚РѕРј rmytarget
-=================================
+# Пример работы с пакетом rmytarget
 
-``` r
+```{r eval=FALSE}
 # work with simple client account
 # authorize by ad account
 myTarAuth(login = "client_login")

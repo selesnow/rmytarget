@@ -31,7 +31,7 @@ myTarGetStats <-
       f <- switch(object_type,
                   "campaigns" = "myTarGetCampaignList",
                   "banners"   = "myTarGetAdList",
-				  "users"     = "myTarGetClientList")
+                  "users"     = "myTarGetClientList")
       # load obj
       objects <- do.call(f, 
                          list(login = login,
@@ -76,39 +76,75 @@ myTarGetStats <-
       if ( !is.null(temp_all_data$error) ) {
         stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
       }
-      # start cycle by each element, object
-      for ( i in 1:length(temp_all_data$items) ) {
+      
+      # daily stat
+      if ( stat_type == "day" ) {
+          # start cycle by each element, object
+          for ( i in 1:length(temp_all_data$items) ) {
+            
+            # get id of current obj
+            id <- temp_all_data$items[[i]]$id
+            
+            # cycle by each rows in obj
+            for( r in 1:length(temp_all_data$items[[2]]$rows) ) {
+              # get date
+              date <- temp_all_data$items[[i]]$rows[[r]]$date
+              # get metrics list
+              m <- names(temp_all_data$items[[i]]$rows[[r]])[names(temp_all_data$items[[i]]$rows[[r]]) != "date"]
+              
+              for ( cur_metric in m ) {
+                assign(cur_metric, 
+                       bind_rows(get(cur_metric), 
+                                 bind_cols(c(id = id, 
+                                             date = date, 
+                                             temp_all_data$items[[i]]$rows[[r]][[cur_metric]] ))))
+                
+              }
+            }
+          } 
+      } else {
         
-        # get id of current obj
-        id <- temp_all_data$items[[i]]$id
+        # summary stat
         
-        # cycle by each rows in obj
-        for( r in 1:length(temp_all_data$items[[2]]$rows) ) {
-          # get date
-          date <- temp_all_data$items[[i]]$rows[[r]]$date
+        # start cycle by each element, object
+        for ( i in 1:length(temp_all_data$items) ) {
+          
+          # get id of current obj
+          id <- temp_all_data$items[[i]]$id
+          
+          
           # get metrics list
-          m <- names(temp_all_data$items[[i]]$rows[[r]])[names(temp_all_data$items[[i]]$rows[[r]]) != "date"]
+          m <- names(temp_all_data$items[[i]][[2]])
           
           for ( cur_metric in m ) {
             assign(cur_metric, 
                    bind_rows(get(cur_metric), 
                              bind_cols(c(id = id, 
-                                         date = date, 
-                                         temp_all_data$items[[i]]$rows[[r]][[cur_metric]] ))))
+                                         temp_all_data$items[[i]][[2]][[cur_metric]] ))))
             
           }
         }
       }
+        #Progresbar step
+        if ( nparts > 1 ) {
+          pb_step <- pb_step + 1
+          utils::setTxtProgressBar(pb, pb_step)}
+      }    
+      
+      if ( exists("pb") ) {
+        close(pb)
+      }
+      
       #Progresbar step
       if ( nparts > 1 ) {
         pb_step <- pb_step + 1
         utils::setTxtProgressBar(pb, pb_step)}
-    }    
+        
     
     if ( exists("pb") ) {
       close(pb)
     }
-	
+    
     message("end-loading--------------->")
     message("Create result table.")
     
@@ -119,12 +155,21 @@ myTarGetStats <-
       
       if ( j == m[1] ) next
       
-      if ( j == "viral") {
-        assign(j, setNames(get(j),  c("id", "date", paste0( "viral_", names(get(j))[ !names(get(j)) %in% c("id", "date") ] ))))
+      if ( stat_type == "day" ) {
+      
+        if ( j == "viral") {
+          assign(j, setNames(get(j),  c("id", "date", paste0( "viral_", names(get(j))[ !names(get(j)) %in% c("id", "date") ] ))))
+        } else {
+          assign(j, setNames(get(j),  c("id", paste0( "viral_", names(get(j))[ !names(get(j)) %in% "id" ] ))))
+        }
       }
       
       # join to result
-      assign("result", left_join(result, get(j), by = c("id", "date")))
+      if ( stat_type == "day" ) {
+        assign("result", left_join(result, get(j), by = c("id", "date")))
+      } else {
+        assign("result", left_join(result, get(j), by = "id"))
+      }
     }
     
     stop_time <- Sys.time()
@@ -132,4 +177,4 @@ myTarGetStats <-
     message("Total time: ", as.numeric(difftime(stop_time, start_time), units = "secs"), " sec.")
     # return total result
     return(result)
-  }
+}
