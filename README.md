@@ -83,18 +83,3 @@ client_stat <-  myTarGetStats(date_from   = Sys.Date() - 7,
                               metrics     = "all",
                               login       = "agency_login")
 ```
-
-### Ссылки
-1. [Документация по работе с пакетом rvkstat](https://selesnow.github.io/rmytarget/).
-2. Баг репорты, предложения по доработке и улучшению функционала ryandexdirect оставлять [тут](https://github.com/selesnow/rmytarget/issues). 
-3. [Список релизов](https://github.com/selesnow/rmytarget/releases).
-4. [Группа в Вконтакте](https://vk.com/data_club).
-
-### Автор пакета
-Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
-<Br>Telegram канал: [R4marketing](https://t.me/R4marketing)
-<Br>email: selesnow@gmail.com
-<Br>skype: selesnow
-<Br>facebook: [facebook.com/selesnow](https://facebook.com/selesnow)
-<Br>linkedin: [linkedin.com/in/selesnow](https://linkedin.com/in/selesnow)
-<Br>blog: [alexeyseleznev.wordpress.com](https://alexeyseleznev.wordpress.com/)

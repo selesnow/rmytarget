@@ -159,9 +159,6 @@ myTarGetStats <-
       
         if ( j == "viral") {
           assign(j, setNames(get(j),  c("id", "date", paste0( "viral_", names(get(j))[ !names(get(j)) %in% c("id", "date") ] ))))
-        } else {
-          assign(j, setNames(get(j),  c("id", paste0( "viral_", names(get(j))[ !names(get(j)) %in% "id" ] ))))
-        }
       }
       
       # join to result
