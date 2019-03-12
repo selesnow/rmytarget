@@ -11,10 +11,10 @@ myTarAuth <-
     if (code_grant == TRUE) {
       
       # try load token
-      if(file.exists(paste0(token_path, "\\", login, ".mytar.Auth.RData"))) {
+      if(file.exists(paste0(token_path, "/", login, ".mytar.Auth.RData"))) {
         
         message("Load token from ", paste0(token_path, "/", login, ".mytar.Auth.RData"))
-        load(paste0(token_path, "\\", login, ".mytar.Auth.RData"))
+        load(paste0(token_path, "/", login, ".mytar.Auth.RData"))
         if (!is.null(parse_token$error)) {
           stop(parse_token$error,": ", parse_token$error_description)
         }
