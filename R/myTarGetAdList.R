@@ -57,7 +57,7 @@ myTarGetAdList <-
     }
     
     packageStartupMessage("| Done",appendLF = T)
-    adsList <- data.frame(do.call("rbind", result))
+    adsList <- map_df(result, flatten)
     return(adsList)
   }
 

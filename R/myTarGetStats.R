@@ -86,7 +86,7 @@ myTarGetStats <-
           id <- temp_all_data$items[[i]]$id
           
           # cycle by each rows in obj
-          for( r in 1:length(temp_all_data$items[[1]]$rows) ) {
+          for( r in 1:length(temp_all_data$items[[i]]$rows) ) {
             # get date
             date <- temp_all_data$items[[i]]$rows[[r]]$date
             # get metrics list

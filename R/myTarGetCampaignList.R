@@ -38,7 +38,7 @@ myTarGetCampaignList <-
       
     }
     
-    campList <- data.frame(do.call("rbind", result))
+    campList <- map_df(result, flatten)
     packageStartupMessage("| Done",appendLF = T)
     return(campList)
   }
