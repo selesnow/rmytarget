@@ -122,6 +122,8 @@ li.nm_li {
 
 ## CRAN
 [![Rdoc](http://www.rdocumentation.org/badges/version/rmytarget)](http://www.rdocumentation.org/packages/rmytarget)
+[![rpackages.io rank](http://www.rpackages.io/badge/rmytarget.svg)](http://www.rpackages.io/package/rmytarget)
+[![](https://cranlogs.r-pkg.org/badges/rmytarget)](https://cran.r-project.org/package=rmytarget)
 
 ## Содержание README:
 
