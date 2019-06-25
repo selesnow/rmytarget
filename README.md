@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-rmytarget - R пакет для работы с API MyTarget v2
+# rmytarget - R пакет для работы с API MyTarget v2 <a href='https://selesnow.github.io/rmytarget'><img src='https://raw.githubusercontent.com/selesnow/rmytarget/master/inst/logo/rmytarget.png' align="right" height="139" /></a>
 ================================================
 
 Подробная русскоязычная документация находится по [ссылке](https://selesnow.github.io/rmytarget).
