@@ -111,7 +111,7 @@ li.nm_li {
 <gcse:search></gcse:search>
 <Br>
 
-# rmytarget - пакет для работы с API MyTarget на языке R.
+# rmytarget - пакет для работы с API MyTarget на языке R. <a href='https://selesnow.github.io/rmytarget'><img src='https://raw.githubusercontent.com/selesnow/rmytarget/master/inst/logo/rmytarget.png' align="right" height="139" /></a>
 ## Ссылки
 * [Документация](https://selesnow.github.io/rmytarget/)
 * [Отчёт об ошибках и доработках](https://github.com/selesnow/rmytarget/issues)
