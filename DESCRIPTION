@@ -1,8 +1,8 @@
 Package: rmytarget
 Type: Package
 Title: Load Data from 'MyTarget API v2'
-Version: 2.1.6
-Date: 2019-03-12
+Version: 2.1.8
+Date: 2019-08-14
 Author: Alexey Seleznev
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'MyTarget API v2' 
