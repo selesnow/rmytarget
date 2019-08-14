@@ -43,7 +43,7 @@ myTarGetStats <-
     # create tables
     # table list
     if ("all" %in% metrics) {
-      tables_name <- c("base", "events", "uniques", "video", "viral", "carousel", "ad_offers", "tps", "moat", "romi")
+      tables_name <- c("base", "events", "uniques", "video", "viral", "carousel", "ad_offers", "tps", "moat", "romi", "playable")
     } else {
       tables_name <- metrics
     }
