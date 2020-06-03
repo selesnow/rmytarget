@@ -1,22 +1,24 @@
+# new
 myTarGetAdList <-
   function(auth = NULL, 
            login = NULL, 
-		   token_path = getwd(),
-		   request_speed = 1.2){
+           status = c("active","blocked","deleted"),
+           token_path = getwd(),
+           request_speed = 1.2){
     
-	
+    
     if (is.null(auth)) {
       auth <- myTarAuth(login = login, token_path = token_path)
     }
     
-	if ( request_speed %in% c("slow", "normal", "fast")) {
-		  
-		  request_speed <- switch(EXPR     = request_speed,
-								  "slow"   = 2,
-								  "normal" = 1.2,
-								  "fast"   = 0.8)
+    if ( request_speed %in% c("slow", "normal", "fast")) {
+      
+      request_speed <- switch(EXPR     = request_speed,
+                              "slow"   = 2,
+                              "normal" = 1.2,
+                              "fast"   = 0.8)
     }
-
+    
     limit  <- 50
     offset <- 0
     count  <- NULL
@@ -25,7 +27,7 @@ myTarGetAdList <-
     packageStartupMessage("Loading |",appendLF = F)
     
     while ( is.null(count) || count > offset ) {
-      ads <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v2/banners.json?fields=id,status,urls,campaign_id,textblocks,moderation_status,created,updated,call_to_action&limit=${limit}&offset=${offset}"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+      ads <- GET(stringr::str_interp("${getOption('rmytarget.url')}api/v2/banners.json?fields=id,status,urls,campaign_id,textblocks,moderation_status,created,updated,call_to_action&$_status__in={paste0(status, collapse = ',')}&limit=${limit}&offset=${offset}"),add_headers(Authorization = paste0("Bearer ",auth$access_token)))
       stop_for_status(ads)
       adsRaw <- content(ads, "parsed", "application/json")
       
