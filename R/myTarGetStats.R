@@ -38,6 +38,8 @@ myTarGetStats <-
                               token_path = token_path))
       
       object_id <- objects$id
+      
+      Sys.sleep(1)
     }
     
     # create tables
@@ -72,6 +74,8 @@ myTarGetStats <-
                  add_headers(Authorization = paste0("Bearer ",auth$access_token)))
       
       temp_all_data <- content(ans, as = "parsed")
+      
+      if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
       
       if ( !is.null(temp_all_data$error) ) {
         stop( temp_all_data$error$code, ": ", temp_all_data$error$message)

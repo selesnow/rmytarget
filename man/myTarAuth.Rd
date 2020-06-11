@@ -2,7 +2,7 @@
 \alias{myTarAuth}
 \title{Authentication in 'MyTarget API'}
 \description{Authentication in 'MyTarget API' by Code Grant Schema. 
-    For detail you can see \href{documentetion}{https://target.my.com/adv/api-marketing/doc/authorization}.}
+    For detail you can see \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation}.}
 \usage{
 myTarAuth(login              = NULL,
           grant_type         = "client_credentials", 
@@ -19,7 +19,7 @@ myTarAuth(login              = NULL,
   \item{client_id}{Yoyr client ID.}
   \item{client_secret}{Your client secret}
   \item{agency_client_name}{Your client user name, only for "agency_client_credentials" grant_type}
-  \item{code_grant}{logical, Use code gran authorise schema, \href{detail}{https://target.my.com/adv/api-marketing/doc/authorization}}
+  \item{code_grant}{logical, Use code gran authorise schema, \href{https://target.my.com/adv/api-marketing/doc/authorization}{detail}}
   \item{token_path}{Path to directory where you save credential data}
 }
 \details{
@@ -33,7 +33,7 @@ Alexey Seleznev
 }
 
 \seealso{
-API authorixation documentation by MyTarget - https://target.my.com/adv/api-marketing/doc/authorization
+API authorixation \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation} by 'MyTarget'
 }
 \examples{
 \dontrun{

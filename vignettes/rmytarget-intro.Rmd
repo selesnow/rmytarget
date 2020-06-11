@@ -4,7 +4,7 @@ author: "Alexey Seleznev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Введение в Пакет rmytarget}
+  %\VignetteIndexEntry{Intro to rmytarget RUS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

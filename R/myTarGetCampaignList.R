@@ -28,6 +28,8 @@ myTarGetCampaignList <-
       stop_for_status(camp)
       campRaw <- content(camp, "parsed", "application/json")
       
+      if ( ! myTarCheckLimits(campRaw) ) stop("Limit error")
+      
       result <- append(result, campRaw$items)
       
       packageStartupMessage("=",appendLF = F)
