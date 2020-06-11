@@ -18,6 +18,8 @@ Remaining calls:
 Per second: ${answer_obj$remaining[['1']]}
 Per hour:   ${answer_obj$remaining[['3600']]}
 Per day:    ${ifelse( is.null(answer_obj$remaining[['86400']]), '-', answer_obj$remaining[['86400']])}
+
+For more details go link (https://target.my.com/help/advertisers/api_arrangement/ru#rec117524632) .
 ")
     
     stop(err_text)
