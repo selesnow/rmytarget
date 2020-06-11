@@ -20,7 +20,7 @@ myTarGetClientList <-
     answer <- content(asw, "parsed", "application/json")
     
     # check limit
-    if ( ! myTarCheckLimits(asw) ) stop("Limit error")
+    if ( ! myTarCheckLimits(answer) ) stop("Limit error")
     
     for ( i in answer$items ) {
       temp <- list( id = i$user$id,
