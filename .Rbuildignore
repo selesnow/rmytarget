@@ -1,0 +1,12 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+getToken
+index.md
+utf8
+README.Rmd
+_config.yml
+.gitignore
+.gitattributes
+^LICENSE\.md$
+^doc$
+^Meta$
