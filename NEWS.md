@@ -1,7 +1,11 @@
+# rmytarget (development version)
+
+* добавлена функция `myTarGetGetGoalList()`, с помощью которой можно загрузить список целей рекламного аккаунта.
+
 # rmytarget 2.2.0
 Дата релиза: 2021-09-06
 
-* Доработана функция `myTarGetStats`, теперь она поддерживает работу и с [API v2](https://target.my.com/adv/api-marketing/doc/stat-v2) и с [API v3](https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3).
+* Доработана функция `myTarGetStats()`, теперь она поддерживает работу и с [API v2](https://target.my.com/adv/api-marketing/doc/stat-v2) и с [API v3](https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3).
 * Добавлена функция `myTarGetGoalsStats()` для загрузки статистики по целям.
 
 # rmytarget 2.1.9
