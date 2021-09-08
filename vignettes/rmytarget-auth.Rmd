@@ -112,4 +112,4 @@ myTarGetAuth <- myTarRefreshToken(old_auth = myTargetAuth,
 * client_id - ID выдаётся вам при подтверждение доступа к API MyTarget.
 * client_secret - Выдаётся вам при подтверждение доступа к API MyTarget вместе с Client ID.
 
-Подробную информацию о схеме аутинтификации в API вы можете получить по [ссылке](https://target.my.com/adv/api-marketing/doc/authorization).
+Подробную информацию о схеме аутинтификации в API вы можете получить по [ссылке](https://target.my.com/help/advertisers/api_authorization/ru).
