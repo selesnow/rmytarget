@@ -23,7 +23,7 @@ Data frame with campaigns list
 Alexey Seleznev
 }
 \seealso{
-\href{https://target.my.com/doc/api/detailed/#resource_campaigns}{MyTarget API ocumentation}
+\href{https://target.my.com/help/advertisers/api-marketing/ru}{MyTarget API ocumentation}
 }
 \examples{
 \dontrun{

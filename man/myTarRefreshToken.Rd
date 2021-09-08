@@ -18,7 +18,7 @@ myTarRefreshToken(old_auth = NULL, client_id = NULL,
 Alexey Seleznev
 }
 \seealso{
-\href{https://target.my.com/doc/api/detailed/#resource_oauth2_access_token}{MyTarget API Documentation}
+\href{https://target.my.com/help/advertisers/api-marketing/ru}{MyTarget API Documentation}
 }
 \examples{
 \dontrun{
