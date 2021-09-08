@@ -33,7 +33,7 @@ Alexey Seleznev
 }
 
 \seealso{
-API authorixation \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation} by 'MyTarget'
+API authorixation \href{https://target.my.com/help/advertisers/api_authorization/ru}{documentation} by 'MyTarget'
 }
 \examples{
 \dontrun{
