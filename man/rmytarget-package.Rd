@@ -12,7 +12,7 @@ The DESCRIPTION file:
 }
 \author{Alexey Seleznev}
 \references{
-\href{https://target.my.com/doc/apiv2/ru/detailed.html}{1. MyTarget API documents}
+\href{https://target.my.com/doc/api/}{1. MyTarget API documents}
 \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{2. MyTarget API statistic methods}
 \href{https://target.my.com/help/advertisers/api_authorization/ru}{3. Authorization}
 }
