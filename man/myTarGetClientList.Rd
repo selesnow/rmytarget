@@ -3,8 +3,11 @@
 \title{Get data frame with agency clients}
 \description{Load data frame with agency client list from 'MyTarget'.}
 \usage{
-myTarGetClientList(auth = NULL, token_path = getwd(), 
-  login = NULL)
+myTarGetClientList(
+    auth = NULL, 
+    login = getOption("rmt_login"),
+    token_path = myTarTokenPath()
+)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

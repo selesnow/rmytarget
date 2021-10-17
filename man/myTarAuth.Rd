@@ -4,13 +4,15 @@
 \description{Authentication in 'MyTarget API' by Code Grant Schema. 
     For detail you can see \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation}.}
 \usage{
-myTarAuth(login              = NULL,
-          grant_type         = "client_credentials", 
-          client_id          = getOption('rmytarget.client_id'),
-          client_secret      = getOption("rmytarget.client_secret"),
-          agency_client_name = NULL,
-          code_grant         = getOption("rmytarget.code_grant_auth"),
-          token_path         = getwd())
+myTarAuth(
+    login = NULL, 
+    grant_type = "client_credentials",
+    client_id = getOption("rmytarget.client_id"),
+    client_secret = getOption("rmytarget.client_secret"),
+    agency_client_name = NULL, 
+    code_grant =getOption("rmytarget.code_grant_auth"), 
+    token_path = myTarTokenPath()
+)
 }
 
 \arguments{

@@ -5,16 +5,15 @@
 \description{Load data frame with statistic by any API objects.}
 \usage{
 myTarGetGoalsStats(
-    date_from       = Sys.Date() - 7,
-    date_to         = Sys.Date(), 
-    object_type     = "campaigns",
-    object_id       = NULL, 
-    attribution     = c("impression", "conversion"),
+    date_from = Sys.Date() - 7, 
+    date_to = Sys.Date(),
+    object_type = "campaigns", 
+    object_id = NULL,
+    attribution = c("impression", "conversion"),
     conversion_type = c("postview", "postclick", "total"),
-    auth            = NULL,
-    token_path      = getwd(), 
-    login           = NULL
-) 
+    auth = NULL, login = getOption("rmt_login"),
+    token_path = myTarTokenPath()
+)
 }
 
 \arguments{

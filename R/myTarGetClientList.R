@@ -1,5 +1,7 @@
 myTarGetClientList <-
-  function(auth = NULL, token_path = getwd(), login = NULL){
+  function(auth = NULL, 
+           login = getOption('rmt_login'), 
+           token_path = myTarTokenPath()){
     if (is.null(auth)) {
       auth <- myTarAuth(login = login, token_path = token_path)
     }

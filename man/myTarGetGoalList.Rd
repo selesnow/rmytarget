@@ -5,8 +5,8 @@
 \usage{
 myTarGetGoalList(
     auth = NULL, 
-    login = NULL, 
-		token_path = getwd()
+    login = getOption("rmt_login"),
+    token_path = myTarTokenPath()
 )
 }
 

@@ -8,8 +8,8 @@ myTarGetFastStats(
   object_type = "campaigns",
   object_id = NULL,
   auth = NULL,
-  token_path = getwd(),
-  login = NULL
+  login = getOption("rmt_login"),
+  token_path = myTarTokenPath()
 )
 }
 \arguments{
@@ -19,9 +19,9 @@ myTarGetFastStats(
 
 \item{auth}{R auth object}
 
-\item{token_path}{Path to directory where you save credential data}
-
 \item{login}{Your login, or client name in MyTarget account}
+
+\item{token_path}{Path to directory where you save credential data}
 }
 \value{
 tibble with fast statistics

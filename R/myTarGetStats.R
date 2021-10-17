@@ -12,8 +12,8 @@ myTarGetStats <-
            sort_by         = NULL,
            sort_direction  = c("asc", "desc"),
            auth            = NULL,
-           token_path      = getwd(), 
-           login           = NULL,
+           login           = getOption('rmt_login'), 
+           token_path      = myTarTokenPath(),
            api_version     = getOption('rmytarget.stat_api_version')
   ) {
     

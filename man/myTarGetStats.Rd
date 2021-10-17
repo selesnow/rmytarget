@@ -5,23 +5,23 @@
 \description{Load data frame with statistic by any API objects.}
 \usage{
 myTarGetStats(
-    date_from       = Sys.Date() - 7,
-    date_to         = Sys.Date(), 
-    object_type     = "campaigns",
-    object_id       = NULL, 
-    stat_type       = "day",
-    metrics         = "base",
-    package_id      = NULL,
-    attribution     = c("conversion", "impression"),
-    banner_status   = NULL, 
+    date_from = Sys.Date() - 7, 
+    date_to = Sys.Date(),
+    object_type = "campaigns", 
+    object_id = NULL, 
+    stat_type = "day", 
+    metrics = "base", 
+    package_id = NULL,
+    attribution = c("conversion", "impression"),
+    banner_status = NULL, 
     campaign_status = NULL, 
-    sort_by         = NULL,
-    sort_direction  = c("asc", "desc"),
-    auth            = NULL,
-    token_path      = getwd(), 
-    login           = NULL,
-    api_version     = getOption('rmytarget.stat_api_version')
-) 
+    sort_by = NULL, 
+    sort_direction = c("asc", "desc"), 
+    auth = NULL, 
+    login = getOption("rmt_login"), 
+    token_path = myTarTokenPath(), 
+    api_version = getOption("rmytarget.stat_api_version")
+)
 }
 
 \arguments{

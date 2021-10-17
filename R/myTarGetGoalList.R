@@ -1,7 +1,7 @@
 myTarGetGoalList <-
-  function(auth = NULL, 
-           login = NULL, 
-           token_path = getwd()) {
+  function(auth       = NULL, 
+           login      = getOption('rmt_login'), 
+           token_path = myTarTokenPath()) {
     
     
     if (is.null(auth)) {

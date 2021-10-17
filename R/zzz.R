@@ -1,10 +1,35 @@
 .onLoad <- function(libname, pkgname) {
+  
+  ## login
+  if ( Sys.getenv("RMT_LOGIN") != "" ) {
+    
+    rmt_login <- Sys.getenv("RMT_LOGIN")
+    
+  } else {
+    
+    rmt_login <- NULL
+    
+  }
+  
+  ## token path
+  if ( Sys.getenv("RMT_TOKEN_PATH") != "" ) {
+    
+    rmt_token_path <- Sys.getenv("RMT_TOKEN_PATH")
+    
+  } else {
+    
+    rmt_token_path <- NULL
+    
+  }
+  
   op <- options()
   op.rmytarget <- list(rmytarget.url                 = "https://target.my.com/",
                        rmytarget.client_id           = "hiM3gdQP04UE8DFR",
                        rmytarget.client_secret       = "Jh5TZlHGKA9GarW8jYzOYsgXnlbnMtSRODkRmHhyFdfpRsG4WbUDK0bFwVm2tK4YJHCtqdyfAYZJEnwHcag9u2jsOXpRkhoGudloum1ueOsZ1KzNAvCYyExZU0HUrZK7TH4VZgx9mh6ZvJS5mRMkcwCTWLOoNWGDwKCFsYmIEwwybgj8HFmWjRdP8bOkGed6kpMPPoo7xqtVsq0U9OyBfbNEAEKHwqWXm4G",
                        rmytarget.code_grant_auth     = TRUE,
-                       rmytarget.stat_api_version    = 'v2')
+                       rmytarget.stat_api_version    = 'v2',
+                       rmytarget.login               = rmt_login,
+                       rmytarget.token_path          = rmt_token_path)
   toset <- !(names(op.rmytarget) %in% names(op))
   if (any(toset)) options(op.rmytarget[toset])
   

@@ -15,8 +15,8 @@ myTarGetOfflineConversionsStats <-
            date_to         = Sys.Date(), 
            object_id       = NULL, 
            auth            = NULL,
-           token_path      = getwd(), 
-           login           = NULL
+           login       = getOption('rmt_login'), 
+           token_path  = myTarTokenPath()
   ) {
     
     start_time <- Sys.time()

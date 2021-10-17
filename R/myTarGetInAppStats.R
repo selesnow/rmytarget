@@ -27,8 +27,8 @@ myTarGetInAppStats <-
            attribution     = c("conversion", "impression"),
            conversion_type = c("postview", "postclick", "total"),
            auth            = NULL,
-           token_path      = getwd(), 
-           login           = NULL
+           login       = getOption('rmt_login'), 
+           token_path  = myTarTokenPath()
   ) {
     
     

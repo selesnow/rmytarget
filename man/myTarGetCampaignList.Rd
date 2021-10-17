@@ -4,10 +4,12 @@
 \title{Get campaign list.}
 \description{Get data frame with 'MyTarget' campaing id, name and parameters}
 \usage{
-myTarGetCampaignList(auth = NULL, 
-           login = NULL, 
-           token_path = getwd(),
-		   request_speed = 1.2)
+myTarGetCampaignList(
+    auth = NULL, 
+    login = getOption("rmt_login"),
+    token_path = myTarTokenPath(), 
+    request_speed = 1.2
+)
 }
 
 \arguments{

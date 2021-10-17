@@ -1,8 +1,8 @@
 myTarGetCampaignList <-
   function(auth = NULL, 
-           login = NULL, 
-           token_path = getwd(),
-		   request_speed = 1.2){
+           login = getOption('rmt_login'), 
+           token_path = myTarTokenPath(),
+		       request_speed = 1.2){
     
     if (is.null(auth)) {
       auth <- myTarAuth(login = login, token_path = token_path)

@@ -5,7 +5,7 @@ myTarAuth <-
            client_secret      = getOption("rmytarget.client_secret"),
            agency_client_name = NULL,
            code_grant         = getOption("rmytarget.code_grant_auth"),
-           token_path         = getwd()){
+           token_path         = myTarTokenPath()){
     
     
     if (code_grant == TRUE) {
@@ -120,3 +120,16 @@ myTarAuth <-
     }
     
   }
+
+
+myTarTokenPath <- function() {
+  
+  if ( is.null(getOption('rmytarget.token_path')) ) {
+    token_path <- getwd()
+  } else {
+    token_path <- getOption('rmytarget.token_path')
+  }
+  
+  return(token_path)
+  
+}
