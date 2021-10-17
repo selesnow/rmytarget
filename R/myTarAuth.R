@@ -1,5 +1,5 @@
 myTarAuth <-
-  function(login              = NULL,
+  function(login              = getOption("rmytarget.login"),
            grant_type         = "client_credentials", 
            client_id          = getOption('rmytarget.client_id'),
            client_secret      = getOption("rmytarget.client_secret"),

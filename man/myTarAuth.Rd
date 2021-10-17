@@ -5,7 +5,7 @@
     For detail you can see \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation}.}
 \usage{
 myTarAuth(
-    login = NULL, 
+    login = getOption("rmytarget.login"), 
     grant_type = "client_credentials",
     client_id = getOption("rmytarget.client_id"),
     client_secret = getOption("rmytarget.client_secret"),
