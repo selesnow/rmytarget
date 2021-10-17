@@ -70,6 +70,7 @@ myTarGetGoalsStats <-
       
       if ('goals' %in% names(result)) {
         
+        # unnest
         result <- unnest_longer(result, 'goals') %>% 
                   unnest_wider('goals')
         
