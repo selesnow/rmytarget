@@ -232,7 +232,7 @@ myTarGetStats <-
       }
 
       fields <- paste0(metrics, collapse = ",")
-      stat_type <- "day"
+      #stat_type <- "day"
 
       # pkg id
       if ( is.null(package_id) ) {
@@ -245,61 +245,10 @@ myTarGetStats <-
       result <- list()
 
       message("start-loading------------->")
-      ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/${stat_type}.json"),
-                 query = list(date_from       = date_from,
-                              date_to         = date_to,
-                              id              = paste0(object_id, collapse = ","),
-                              fields          = paste0(fields, collapse = ","),
-                              limit           = 250,
-                              attribution     = attribution,
-                              banner_status   = banner_status,
-                              campaign_status = campaign_status,
-                              package_id      = package_id,
-                              sort_by         = sort_by,
-                              d               = sort_direction,
-                              offset          = 0),
-                 add_headers(Authorization = paste0("Bearer ",auth$access_token)))
-
-      # get answer content
-      temp_all_data <- content(ans, as = "parsed")
-      length(temp_all_data$items)
-
-      # Check limits
-      if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
-
-      # check for error
-      if ( !is.null(temp_all_data$error) ) {
-        stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
-      }
-
-      # pagination
-      obj_per_call <- 250
-      start        <- temp_all_data$offset
-      total_obj    <- temp_all_data$count
-      r_offset     <- start + obj_per_call
-
-      # main data
-      mt_data <- tibble( data = temp_all_data$items ) %>%
-        unnest_wider('data') %>%
-        unnest_wider('total')
-
-      # metrics group
-      metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
-
-      # unnest metrics group fields
-      for ( metric_group in metrics_groups ) {
-
-        mt_data <- unnest_wider(mt_data, metric_group, names_sep = "_")
-
-      }
-
-      # add to result
-      result <- append(result, list(mt_data))
-
-      # paginations
-      while (r_offset <= total_obj) {
-
-        ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/${stat_type}.json"),
+      
+      if ( stat_type == "summary" ) {
+      
+        ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/day.json"),
                    query = list(date_from       = date_from,
                                 date_to         = date_to,
                                 id              = paste0(object_id, collapse = ","),
@@ -311,45 +260,216 @@ myTarGetStats <-
                                 package_id      = package_id,
                                 sort_by         = sort_by,
                                 d               = sort_direction,
-                                offset          = r_offset),
+                                offset          = 0),
                    add_headers(Authorization = paste0("Bearer ",auth$access_token)))
-
+  
         # get answer content
         temp_all_data <- content(ans, as = "parsed")
-
+        length(temp_all_data$items)
+  
         # Check limits
         if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
-
+  
         # check for error
         if ( !is.null(temp_all_data$error) ) {
           stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
         }
-
-        # paginations
+  
+        # pagination
+        obj_per_call <- 250
         start        <- temp_all_data$offset
         total_obj    <- temp_all_data$count
         r_offset     <- start + obj_per_call
-
+  
         # main data
         mt_data <- tibble( data = temp_all_data$items ) %>%
           unnest_wider('data') %>%
           unnest_wider('total')
-
+  
         # metrics group
         metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
-
+  
         # unnest metrics group fields
         for ( metric_group in metrics_groups ) {
-
+  
           mt_data <- unnest_wider(mt_data, metric_group, names_sep = "_")
-
+  
         }
-
+  
         # add to result
         result <- append(result, list(mt_data))
-
-        # pause between calls
-        Sys.sleep(1)
+  
+        # paginations
+        while (r_offset <= total_obj) {
+  
+          ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/${stat_type}.json"),
+                     query = list(date_from       = date_from,
+                                  date_to         = date_to,
+                                  id              = paste0(object_id, collapse = ","),
+                                  fields          = paste0(fields, collapse = ","),
+                                  limit           = 250,
+                                  attribution     = attribution,
+                                  banner_status   = banner_status,
+                                  campaign_status = campaign_status,
+                                  package_id      = package_id,
+                                  sort_by         = sort_by,
+                                  d               = sort_direction,
+                                  offset          = r_offset),
+                     add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+  
+          # get answer content
+          temp_all_data <- content(ans, as = "parsed")
+  
+          # Check limits
+          if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
+  
+          # check for error
+          if ( !is.null(temp_all_data$error) ) {
+            stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
+          }
+  
+          # paginations
+          start        <- temp_all_data$offset
+          total_obj    <- temp_all_data$count
+          r_offset     <- start + obj_per_call
+  
+          # main data
+          mt_data <- tibble( data = temp_all_data$items ) %>%
+                      unnest_wider('data') %>%
+                      unnest_wider('total')
+  
+          # metrics group
+          metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
+  
+          # unnest metrics group fields
+          for ( metric_group in metrics_groups ) {
+  
+            mt_data <- unnest_wider(mt_data, metric_group, names_sep = "_")
+  
+          }
+  
+          # add to result
+          result <- append(result, list(mt_data))
+  
+          # pause between calls
+          Sys.sleep(1)
+        }
+        
+      } else {
+        
+        for ( dt in as.character(seq(date_from, date_to, by = 'day')) ) {
+          
+          ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/day.json"),
+                     query = list(date_from       = dt,
+                                  date_to         = dt,
+                                  id              = paste0(object_id, collapse = ","),
+                                  fields          = paste0(fields, collapse = ","),
+                                  limit           = 250,
+                                  attribution     = attribution,
+                                  banner_status   = banner_status,
+                                  campaign_status = campaign_status,
+                                  package_id      = package_id,
+                                  sort_by         = sort_by,
+                                  d               = sort_direction,
+                                  offset          = 0),
+                     add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+          
+          # get answer content
+          temp_all_data <- content(ans, as = "parsed")
+          length(temp_all_data$items)
+          
+          # Check limits
+          if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
+          
+          # check for error
+          if ( !is.null(temp_all_data$error) ) {
+            stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
+          }
+          
+          # pagination
+          obj_per_call <- 250
+          start        <- temp_all_data$offset
+          total_obj    <- temp_all_data$count
+          r_offset     <- start + obj_per_call
+          
+          # main data
+          mt_data <- tibble( data = temp_all_data$items ) %>%
+            unnest_wider('data') %>%
+            unnest_wider('total')
+          
+          # metrics group
+          metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
+          
+          # unnest metrics group fields
+          for ( metric_group in metrics_groups ) {
+            
+            mt_data <- unnest_wider(mt_data, metric_group, names_sep = "_")
+            
+          }
+          
+          # add to result
+          result <- append(result, list(mt_data))
+          
+          # paginations
+          while (r_offset <= total_obj) {
+            
+            ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/${stat_type}.json"),
+                       query = list(date_from       = dt,
+                                    date_to         = dt,
+                                    id              = paste0(object_id, collapse = ","),
+                                    fields          = paste0(fields, collapse = ","),
+                                    limit           = 250,
+                                    attribution     = attribution,
+                                    banner_status   = banner_status,
+                                    campaign_status = campaign_status,
+                                    package_id      = package_id,
+                                    sort_by         = sort_by,
+                                    d               = sort_direction,
+                                    offset          = r_offset),
+                       add_headers(Authorization = paste0("Bearer ",auth$access_token)))
+            
+            # get answer content
+            temp_all_data <- content(ans, as = "parsed")
+            
+            # Check limits
+            if ( ! myTarCheckLimits(temp_all_data) ) stop("Limit error")
+            
+            # check for error
+            if ( !is.null(temp_all_data$error) ) {
+              stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
+            }
+            
+            # paginations
+            start        <- temp_all_data$offset
+            total_obj    <- temp_all_data$count
+            r_offset     <- start + obj_per_call
+            
+            # main data
+            mt_data <- tibble( data = temp_all_data$items ) %>%
+              unnest_wider('data') %>%
+              unnest_wider('total')
+            
+            # metrics group
+            metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
+            
+            # unnest metrics group fields
+            for ( metric_group in metrics_groups ) {
+              
+              mt_data <- unnest_wider(mt_data, metric_group, names_sep = "_")
+              
+            }
+            
+            # add to result
+            result <- append(result, list(mt_data))
+            
+            # pause between calls
+            Sys.sleep(1)
+          }
+          
+          Sys.sleep(1)
+          
+        }
+        
       }
 
 
