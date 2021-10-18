@@ -133,3 +133,27 @@ myTarTokenPath <- function() {
   return(token_path)
   
 }
+
+#' Set MyTarget login
+#'
+#' @param login Your login, or client name in MyTarget account
+#'
+#' @return No return value, called for side effects
+#' @export
+myTarSetLogin <- function(login) {
+  
+  options('rmytarget.login' = login)
+  
+}
+
+#' Set path to auth cache
+#'
+#' @param token_path Path to directory where you save credential data
+#'
+#' @return No return value, called for side effects
+#' @export
+myTarSetTokenPath <- function(token_path) {
+  
+  options('rmytarget.login' = token_path)
+  
+}
