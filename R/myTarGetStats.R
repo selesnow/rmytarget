@@ -357,7 +357,7 @@ myTarGetStats <-
         
       } else {
         
-        for ( dt in as.character(seq(date_from, date_to, by = 'day')) ) {
+        for ( dt in as.character(seq(as.Date(as.character(date_from)), as.Date(as.character(date_to), by = 'day'))) ) {
           
           ans <- GET(url = str_interp("https://target.my.com/api/v3/statistics/${object_type}/day.json"),
                      query = list(date_from       = dt,
