@@ -395,7 +395,8 @@ myTarGetStats <-
           # main data
           mt_data <- tibble( data = temp_all_data$items ) %>%
             unnest_wider('data') %>%
-            unnest_wider('total')
+            unnest_wider('total') %>% 
+            mutate(date = as.Date(dt))
           
           # metrics group
           metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
@@ -447,7 +448,8 @@ myTarGetStats <-
             # main data
             mt_data <- tibble( data = temp_all_data$items ) %>%
               unnest_wider('data') %>%
-              unnest_wider('total')
+              unnest_wider('total') %>% 
+              mutate(date = as.Date(dt))
             
             # metrics group
             metrics_groups <- names(mt_data)[ ! names(mt_data) %in% c("id", "user_id") ]
