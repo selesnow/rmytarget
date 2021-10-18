@@ -475,8 +475,7 @@ myTarGetStats <-
       }
 
 
-      result <- bind_rows(result) %>% 
-                mutate(date = as.Date(date))
+      result <- bind_rows(result) 
 
     }
     
