@@ -8,14 +8,12 @@
 #' @param login Your login, or client name in MyTarget account
 #'
 #' @return tibble with offline conversions statistics
-#'
-#' @examples
 myTarGetOfflineConversionsStats <- 
   function(date_from       = Sys.Date() - 7,
            date_to         = Sys.Date(), 
            object_id       = NULL, 
            auth            = NULL,
-           login       = getOption('rmt_login'), 
+           login       = getOption('rmytarget.login'), 
            token_path  = myTarTokenPath()
   ) {
     

@@ -5,7 +5,7 @@
 \usage{
 myTarGetClientList(
     auth = NULL, 
-    login = getOption("rmt_login"),
+    login = getOption("rmytarget.login"),
     token_path = myTarTokenPath()
 )
 }

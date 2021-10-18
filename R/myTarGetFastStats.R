@@ -22,7 +22,7 @@ myTarGetFastStats <-
   function(object_type = "campaigns",
            object_id   = NULL, 
            auth        = NULL,
-           login       = getOption('rmt_login'), 
+           login       = getOption('rmytarget.login'), 
            token_path  = myTarTokenPath()
   ) {
     

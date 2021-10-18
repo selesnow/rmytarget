@@ -6,7 +6,7 @@
 \usage{
 myTarGetCampaignList(
     auth = NULL, 
-    login = getOption("rmt_login"),
+    login = getOption("rmytarget.login"),
     token_path = myTarTokenPath(), 
     request_speed = 1.2
 )
