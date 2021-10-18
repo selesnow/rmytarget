@@ -154,6 +154,6 @@ myTarSetLogin <- function(login) {
 #' @export
 myTarSetTokenPath <- function(token_path) {
   
-  options('rmytarget.login' = token_path)
+  options('rmytarget.token_path' = token_path)
   
 }
