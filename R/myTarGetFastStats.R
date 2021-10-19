@@ -2,6 +2,7 @@
 clicks <- NULL
 shows <- NULL
 timestamp <- NULL
+id <- NULL
 
 #' Returns Basic Statistics in Real Time
 #' @description returns basic statistics on advertising objects in real time, without taking into account the filtering of incorrect traffic. The summary statistics can vary significantly.
@@ -87,16 +88,16 @@ myTarGetFastStats <-
                   mutate(
                     timestamp = as.POSIXct(timestamp, origin = '1970-01-01')
                   ) %>% 
-                  group_by('id', 'timestamp') %>% 
+                  group_by(id, timestamp) %>% 
                   summarise(clicks = sum(clicks, na.rm = TRUE))
                   
     res_shows <- res_data %>% 
                   unnest_longer('shows') %>% 
-                  group_by('id') %>% 
+                  group_by(id) %>% 
                   summarise(shows = sum(shows, na.rm = TRUE))
     
     res <- left_join(res_shows, res_clicks) %>% 
-           select('id', 'timestamp', 'shows', 'clicks')
+           select(id, timestamp, shows, clicks)
     
     return(res)
     

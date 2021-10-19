@@ -12,7 +12,7 @@ myTarGetStats(
     stat_type = "day", 
     metrics = "base", 
     package_id = NULL,
-    attribution = c("conversion", "impression"),
+    attribution = c("conversion", "impression", "default"),
     banner_status = NULL, 
     campaign_status = NULL, 
     sort_by = NULL, 
