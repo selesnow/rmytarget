@@ -68,10 +68,10 @@ myTarGetStats <-
       } 
       
       # attrib
+      attribution     <- match.arg(attribution)
       if ( ! attribution %in% c("impression", "default") ) {
         attribution <- NULL
       }
-      
       
       # pars of object
       nparts <- ceiling( length(object_id) / 200 )
@@ -229,6 +229,10 @@ myTarGetStats <-
       banner_status   <- match.arg(banner_status)
       campaign_status <- match.arg(campaign_status)
       sort_direction  <- match.arg(sort_direction)
+      
+      if ( ! attribution %in% c("impression", "conversion") ) {
+        attribution <- NULL
+      }
 
       if ( !is.null(banner_status) ) {
         banner_status <- match.arg(banner_status, c("all", "active", "blocked", "deleted"))
