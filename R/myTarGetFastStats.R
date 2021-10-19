@@ -97,7 +97,8 @@ myTarGetFastStats <-
                   summarise(shows = sum(shows, na.rm = TRUE))
     
     res <- left_join(res_shows, res_clicks) %>% 
-           select(id, timestamp, shows, clicks)
+           select(id, timestamp, shows, clicks) %>% 
+           mutate(id = as.integer(id))
     
     return(res)
     
