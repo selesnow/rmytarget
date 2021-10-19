@@ -67,6 +67,12 @@ myTarGetStats <-
         assign(t, data.frame())
       } 
       
+      # attrib
+      if ( ! attribution %in% c("impression", "default") ) {
+        attribution <- NULL
+      }
+      
+      
       # pars of object
       nparts <- ceiling( length(object_id) / 200 )
       objects_parts <- suppressWarnings( split(object_id, 1:nparts) )
