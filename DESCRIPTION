@@ -2,7 +2,7 @@ Package: rmytarget
 Type: Package
 Title: Load Data from 'MyTarget API v2 and v3'
 Version: 2.4.0
-Date: 2021-10-17
+Date: 2021-10-19
 Authors@R: 
     c(person(given  = "Alexey",
              family = "Seleznev",

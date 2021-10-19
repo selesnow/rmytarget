@@ -6,7 +6,7 @@ myTarGetStats <-
            stat_type       = "day",
            metrics         = "base",
            package_id      = NULL,
-           attribution     = c("conversion", "impression"),
+           attribution     = c("conversion", "impression", "default"),
            banner_status   = NULL, 
            campaign_status = NULL, 
            sort_by         = NULL,
@@ -80,10 +80,11 @@ myTarGetStats <-
       for (p in objects_parts) {
         
         ans <- GET(url = str_interp("https://target.my.com/api/v2/statistics/${object_type}/${stat_type}.json"),
-                   query = list(date_from = date_from,
-                                date_to   = date_to,
-                                id        = paste0(p, collapse = ","),
-                                metrics   = paste0(metrics, collapse = ",")),
+                   query = list(date_from   = date_from,
+                                date_to     = date_to,
+                                id          = paste0(p, collapse = ","),
+                                metrics     = paste0(metrics, collapse = ","), 
+                                attribution = attribution),
                    add_headers(Authorization = paste0("Bearer ",auth$access_token)))
         
         temp_all_data <- content(ans, as = "parsed")
