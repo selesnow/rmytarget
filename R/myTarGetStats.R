@@ -226,8 +226,6 @@ myTarGetStats <-
 
       # match args
       attribution     <- match.arg(attribution)
-      banner_status   <- match.arg(banner_status)
-      campaign_status <- match.arg(campaign_status)
       sort_direction  <- match.arg(sort_direction)
       
       if ( ! attribution %in% c("impression", "conversion") ) {
