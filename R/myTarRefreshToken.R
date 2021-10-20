@@ -1,3 +1,18 @@
+#' Refresh Access Token
+#'
+#' @param old_auth Your old auth object. See \code{\link{myTarAuth}}
+#' @param client_id Your client ID
+#' @param client_secret Your client secret
+#'
+#' @return No return value, called for side effects
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' auth <- myTarRefreshToken(old_auth = myTargetAuth,
+#'                          client_id = "xxxx",
+#'                          client_secret = "xxxx.")
+#' }
 myTarRefreshToken <-
 function(old_auth = NULL, client_id = NULL,client_secret = NULL){
   if(is.null(old_auth) | is.null(client_id) | is.null(client_secret)){

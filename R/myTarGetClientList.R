@@ -1,3 +1,17 @@
+#' Get Agency Clients from 'MyTarget'
+#'
+#' @inheritParams myTarAuth 
+#' @inheritParams myTarGetAdList 
+#'
+#' @return data frame with agency clients
+#' @export
+#' @seealso {MyTarget API Documenation}{https://target.my.com/doc/api/detailed/#resource_agency_clients}
+#'
+#' @examples
+#' \dontrun{
+#' myTarSetLogin("Your Login")
+#' clients <- myTarGetClientList()
+#' }
 myTarGetClientList <-
   function(auth = NULL, 
            login = getOption('rmytarget.login'), 

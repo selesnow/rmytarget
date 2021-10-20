@@ -1,3 +1,24 @@
+#' Authentication in 'MyTarget API'
+#' @description Authentication in 'MyTarget API' by Code Grant Schema or other auth schems. For detail you can see \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation}.
+#' @param login Account name, used in file name if you save credential
+#' @param grant_type Your account grant, get one of two values, "client_credentials" or "agency_client_credentials". Not use in Code Grant Schema. 
+#' @param client_id Yoyr client ID. Not use in Code Grant Schema. 
+#' @param client_secret Your client secret. Not use in Code Grant Schema. 
+#' @param agency_client_name Your client user name. Only for "agency_client_credentials" grant_type.
+#' @param code_grant logical, Use code gran authorise schema, \href{https://target.my.com/adv/api-marketing/doc/authorization}{detail}
+#' @param token_path Path to directory where you save credential data.
+#'
+#' @return No return value, called for side effects
+#' @export
+#' 
+#' @seealso API authorization \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation} by 'MyTarget'.
+#' @author Alexey Seleznev
+#' @examples
+#' \dontrun{
+#'# Recomendation auth by code grant schema
+#'myTarAuth(login = "my_account_name")
+#'
+#'}						  
 myTarAuth <-
   function(login              = getOption("rmytarget.login"),
            grant_type         = "client_credentials", 

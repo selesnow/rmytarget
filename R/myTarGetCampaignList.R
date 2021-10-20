@@ -1,3 +1,17 @@
+#' Get campaign list from 'MyTarget'
+#'
+#' @inheritParams myTarAuth 
+#' @inheritParams myTarGetAdList 
+#'
+#' @return Data frame with campaigns list
+#' @seealso \href{https://target.my.com/doc/api/detailed/#resource_campaigns}{MyTarget API ocumentation}
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' myTargetCampaign <- myTarGetCampaignList(myTargetAuth)
+#' }
+#' 
 myTarGetCampaignList <-
   function(auth = NULL, 
            login = getOption('rmytarget.login'), 
