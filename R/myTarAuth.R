@@ -5,13 +5,13 @@
 #' @param client_id Yoyr client ID. Not use in Code Grant Schema. 
 #' @param client_secret Your client secret. Not use in Code Grant Schema. 
 #' @param agency_client_name Your client user name. Only for "agency_client_credentials" grant_type.
-#' @param code_grant logical, Use code gran authorise schema, \href{https://target.my.com/adv/api-marketing/doc/authorization}{detail}
+#' @param code_grant logical, Use code gran authorise schema, \href{https://target.my.com/help/advertisers/api_authorization/ru}{detail}
 #' @param token_path Path to directory where you save credential data.
 #'
 #' @return No return value, called for side effects
 #' @export
 #' 
-#' @seealso API authorization \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation} by 'MyTarget'.
+#' @seealso API authorization \href{https://target.my.com/help/advertisers/api_authorization/ru}{documentation} by 'MyTarget'.
 #' @author Alexey Seleznev
 #' @examples
 #' \dontrun{
