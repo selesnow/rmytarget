@@ -25,7 +25,7 @@ myTarAuth(
 
 \item{agency_client_name}{Your client user name. Only for "agency_client_credentials" grant_type.}
 
-\item{code_grant}{logical, Use code gran authorise schema, \href{https://target.my.com/adv/api-marketing/doc/authorization}{detail}}
+\item{code_grant}{logical, Use code gran authorise schema, \href{https://target.my.com/help/advertisers/api_authorization/ru}{detail}}
 
 \item{token_path}{Path to directory where you save credential data.}
 }
@@ -33,7 +33,7 @@ myTarAuth(
 No return value, called for side effects
 }
 \description{
-Authentication in 'MyTarget API' by Code Grant Schema or other auth schems. For detail you can see \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation}.
+Authentication in 'MyTarget API' by Code Grant Schema or other auth schems. For detail you can see \href{https://target.my.com/help/advertisers/api_authorization/ru}{documentation}.
 }
 \examples{
 \dontrun{
@@ -43,7 +43,7 @@ myTarAuth(login = "my_account_name")
 }						  
 }
 \seealso{
-API authorization \href{https://target.my.com/adv/api-marketing/doc/authorization}{documentation} by 'MyTarget'.
+API authorization \href{https://target.my.com/help/advertisers/api_authorization/ru}{documentation} by 'MyTarget'.
 }
 \author{
 Alexey Seleznev
