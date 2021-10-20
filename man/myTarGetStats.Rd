@@ -34,7 +34,7 @@ myTarGetStats(
 
 \item{stat_type}{Breakdown by day, possible values: day, summary.}
 
-\item{metrics}{Set of metrics or fields, see metrics section for more ditali, default "base", but you can load any of all, base, events, video, viral, uniques, tps, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget Stat API v2} or \href{MyTarget Stat API v3}{https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3}.}
+\item{metrics}{Set of metrics or fields, see metrics section for more ditali, default "base", but you can load any of all, base, events, video, viral, uniques, tps, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget Stat API v2} or \href{https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3}{MyTarget Stat API v3}.}
 
 \item{package_id}{List of package identifiers. Available for banner statistics.}
 

@@ -5,7 +5,7 @@
 #' @param object_type API object type, character value, one of campaigns, banners, users.
 #' @param object_id ID of API object (id campaign or any object).
 #' @param stat_type Breakdown by day, possible values: day, summary.
-#' @param metrics Set of metrics or fields, see metrics section for more ditali, default "base", but you can load any of all, base, events, video, viral, uniques, tps, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget Stat API v2} or \href{MyTarget Stat API v3}{https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3}.
+#' @param metrics Set of metrics or fields, see metrics section for more ditali, default "base", but you can load any of all, base, events, video, viral, uniques, tps, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget Stat API v2} or \href{https://target.my.com/adv/api-marketing/doc/stat-v2#statisticsv3}{MyTarget Stat API v3}.
 #' @param package_id List of package identifiers. Available for banner statistics.
 #' @param attribution Attributing by event time or impression time. Available options: conversion, impression, default.
 #' @param banner_status Banner statuses list, available for campaign and banner statistics. Possible values: all, active, blocked, deleted.
