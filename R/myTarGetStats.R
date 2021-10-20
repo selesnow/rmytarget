@@ -155,7 +155,7 @@
 #'   }
 #' 
 #' @export
-#' @seealso \href{https://target.my.com/doc/api/detailed/#resource_statistics}{MyTarget API documentation}
+#' @seealso \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget API documentation}
 #'
 #' @examples
 #' \dontrun{

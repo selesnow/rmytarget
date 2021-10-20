@@ -247,5 +247,5 @@ client_stat <-  myTarGetStats(date_from   = Sys.Date() - 7,
 }
 }
 \seealso{
-\href{https://target.my.com/doc/api/detailed/#resource_statistics}{MyTarget API documentation}
+\href{https://target.my.com/adv/api-marketing/doc/stat-v2}{MyTarget API documentation}
 }

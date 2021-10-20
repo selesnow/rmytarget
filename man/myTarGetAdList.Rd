@@ -32,5 +32,5 @@ myAds <- myTarGetAdList(login = "my_test_client")
 }
 }
 \seealso{
-\href{https://target.my.com/doc/api/detailed/#resource_banners}{MyTarget API Documentation}
+\href{https://target.my.com/doc/api/ru/resource/Banners}{MyTarget API Documentation}
 }

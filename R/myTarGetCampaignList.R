@@ -4,7 +4,7 @@
 #' @inheritParams myTarGetAdList 
 #'
 #' @return Data frame with campaigns list
-#' @seealso \href{https://target.my.com/doc/api/detailed/#resource_campaigns}{MyTarget API ocumentation}
+#' @seealso \href{https://target.my.com/doc/api/ru/resource/Campaigns}{MyTarget API ocumentation}
 #' @export
 #'
 #' @examples

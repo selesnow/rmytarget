@@ -6,8 +6,6 @@
 #' @export
 #' 
 #' @seealso \href{https://target.my.com/doc/api/ru/resource/Goals}{Goals API Docymentation}
-#'
-#' @examples
 myTarGetGoalList <-
   function(auth       = NULL, 
            login      = getOption('rmytarget.login'), 

@@ -33,5 +33,5 @@ myTargetCampaign <- myTarGetCampaignList(myTargetAuth)
 
 }
 \seealso{
-\href{https://target.my.com/doc/api/detailed/#resource_campaigns}{MyTarget API ocumentation}
+\href{https://target.my.com/doc/api/ru/resource/Campaigns}{MyTarget API ocumentation}
 }

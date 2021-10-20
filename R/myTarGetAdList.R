@@ -6,7 +6,7 @@
 #'
 #' @return Data frame with banners list
 #' @export
-#' @seealso \href{https://target.my.com/doc/api/detailed/#resource_banners}{MyTarget API Documentation}
+#' @seealso \href{https://target.my.com/doc/api/ru/resource/Banners}{MyTarget API Documentation}
 #'
 #' @examples
 #' \dontrun{
